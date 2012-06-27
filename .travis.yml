@@ -1,0 +1,9 @@
+bundler_args:
+  --without development debug assets
+
+language: ruby
+
+script: "bundle exec rake"
+
+rvm:
+  - 1.9.3

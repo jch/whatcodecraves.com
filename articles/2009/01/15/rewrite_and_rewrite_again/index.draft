@@ -1,0 +1,46 @@
+# Rewrite and Rewrite Again #
+
+One of the more satisfying feelings you get when you're coding is when
+you write something that's not only functional, but beautiful as well.
+Beautiful code is really hard to guage, but you know it when you see
+it.  It's clever, it's concise, you instantly understand what it does.
+Once you get that feeling, you'll always try to replicate it
+elsewhere.  You'll be doomed to do it better than you did last time.
+
+Originally, this post was going to be a pat on my back for write a
+jQuery plugin for a 'customizable event-delegation in place editor'.
+I obviously got sidetracked several times.  Every time I thought of
+publishing the entry, I would find a better way to do something.
+First it was extracting out options, next it was making the code flow
+easier to understand, then it was documentation.  The code had been
+working for a while already, but the blog entry to flaunt it was put
+on indefinite hold.
+
+One of my favorite reasons for working on pet projects outside of work
+is this seemingly endless rewrite cycle.  By the time I actually put
+something down and reflect about the code I wrote, I can look it over
+and be proud of the results.  The code would be so familiar that I'd
+be able to look at it weeks later and have my original intention be as
+clear as when I first typed it.  One benefit of this process is that
+it really helps me retain knowledge.  I might start the process by
+blindly following some tutorial I find online, but each rewrite lets
+me understand another piece of the problem.
+
+* there's a gap between recognizing beautiful code and writing it
+  yourself.
+
+* mimic what you and the geek community values as good code.  Learn
+  from how they package their code.  Follow their conventions.
+
+  from mimic'ing you'll develop your own style.  You'll add your or
+  special seasoning that other people can recognize.  It's amazing
+  that after 6 months, I can look at our codebase at work and be 90%
+  sure who wrote the code based on the style.
+
+* reflect on your code line by line when you finish.  why did you do
+  what you did.  Can it be done better?  Would a stranger be able to
+  follow how your code flows?
+
+* When you see more neat code or learn a new technique, try to apply
+  it to your old projects, and see what's changed in your thought
+  process.

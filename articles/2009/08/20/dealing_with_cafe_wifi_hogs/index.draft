@@ -1,0 +1,24 @@
+# Dealing with Cafe Wifi Hogs #
+
+I expect power outlets and free wifi when I go to a cafe.  That's why
+I was horrified to read from the Wall Street Journal that [some cafe
+owners are stopping this amazing
+perk](http://online.wsj.com/article/SB124950421033208823.html) because
+of costs.  It makes perfect sense that if I'm going to sit for hours
+and suck power and bandwidth, I should pay more than $1.50 for a
+coffee.  I'm taking up valuable space, and I'm cutting into the poor
+mom and pop's shop's margins.  At the same time, I hate those clunky
+for-pay services I see in some cafes.  They never work, they're
+spammy, and they're ridiculously expensive.  I want everybody to to
+win.  I want my easy and convenient wifi and power, and I want the
+shop owners to have incentives to keep me in their cafe.
+
+Then it hit me while I was at [Sonoma Coffee
+Cafe](http://www.yelp.com/biz/sonoma-coffee-cafe-berkeley) (while I
+was leeching on the free wifi).  We need to turn cafes into mini-ISPs.
+When I go in to a cafe, I should buy service or get some credits for
+service for buying a drink.  This keeps me online for a couple hours,
+but then if I want to stay, I should get routed to a portal page
+telling me that I should get some more credits from the cafe.  With
+some nifty open source technology, we can make it free for cafe owners
+to run this, and really cheap for cafe customers.

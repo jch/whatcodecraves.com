@@ -1,0 +1,10 @@
+# Versioned Development #
+
+Here's the situation I face at work: We're in the debug/QA phase of
+our sprint cycle.  I realize that there's a better way to model
+something that I wrote a week ago.  Unfortunately it involves changing
+the database.  There seems to be two logical paths I can take.  One is
+I change the already committed migrations and edit the database by
+hand, while the other is to create a new migration to undo the changes
+made by the earlier migration.  Both have their pros and cons.
+

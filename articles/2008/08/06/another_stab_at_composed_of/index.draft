@@ -1,0 +1,12 @@
+# Another Stab at <pre>composed_of</pre> #
+
+I've had to use ActiveRecord's composed\_of association several times
+at work now.  Everytime I've come across it in the code, or try using
+it myself has resulted in a) me doing it wrong, b) me misunderstanding
+the documentation, and c) me understanding it just enough to forget it
+the next time I use it.  Well, enough is enough.  I vow to grok this
+simple concept.
+
+http://api.rubyonrails.org/classes/ActiveRecord/Aggregations/ClassMethods.html
+
+http://opensoul.org/2006/11/16/making-code-composed_of-code-more-useful

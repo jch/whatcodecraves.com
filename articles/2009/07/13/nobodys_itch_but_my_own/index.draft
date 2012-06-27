@@ -1,0 +1,51 @@
+# Nobody's Itch But My Own - why OpenOffice Will Always Suck #
+
+I love open source software in many different ways.  The ideals behind
+it make me feel warm and fuzzy.  The community around it is
+knowledgable and helpful.  The products and tools themselves make it
+possible for me to work and do what I love.  With that said, I'm ready
+to buy a punching dummy and stick the OpenOffice logo on it's face.
+
+## Existing Propriertary Software ##
+
+
+
+
+## Existing Open Source Software ##
+
+
+## Ego as a Motivator ##
+
+In ['The Cathedral and the the Bazaar'](), Eric S. Raymond said that
+ego can be a non-monetary driving force for working on open source
+software.  I believe this for tools software.  General softare tools
+that can be composed into larger projects.  But once we get into
+domain specific software, you need more than programmers to make a
+polished product.
+
+Coupa's a great example of propiertary software built on top of open
+source tools.
+
+Firefox
+
+Apache
+
+Rails
+
+Ruby Libraries
+
+MySQL
+
+Linux
+
+Every request that comes in touches upon a lot of really great code
+refined over the years by volunteers.  They make it possible for us to
+focus our attention and efforts on building out the procurement domain
+knowledge instead of rebuilding the wheel.
+
+In contrast, OpenOffice will never be as polished a product because
+the volunteers lack a vision for.
+
+
+Why does Apache work, but OOO not?
+

@@ -1,0 +1,182 @@
+# Lessons from Money App #
+
+### ActionMailer template globbin' ###
+
+ActionMailer::Base.create! will throw a nil exception:
+
+    NoMethodError (You have a nil object when you didn't expect it!
+    The error occurred while evaluating nil.multipart?):
+
+if you're not careful and you beloved editor happens to save backup
+files with a ~ extension.  This gets caught in the glob and will annoy
+you like no other.
+
+### Samsung T619 ###
+
+Here's a moronic UI moment:  You want to send a text message to an
+email address, but when you compose a text, my phone doesn't allow me
+to type email addresses.  At first I thought I had too 'old' a phone,
+but then Lilly tells me her 2 year old Razor could do it.  She
+suggested I add a new contact with email info and try to text that
+contact.  Sure enough, that worked.  Let's recap.  In order for me to
+send a sms to an email address, I need to create a new contact and
+save it to my address book (also no easy feat).
+
+### Stylesheet Caching ###
+
+The Rails [documentation for stylesheet
+caching](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#M001683)
+is kind of confusing.  I had a problem with one of my stylesheets
+going missing when run in production mode.  I found [a
+solution](http://blog.codefront.net/2008/08/07/sass-with-rails-avoiding-disappearing-stylesheets-in-production/)
+while I was looking up other stuff.  Instead of saying:
+
+    <%= stylesheet_link_tag 'application', :cache => true %>
+    <%= stylesheet_link_tag 'ui_datepicker', :cache => true %>
+
+Specify a filename to cache it to:
+
+    <%= stylesheet_link_tag 'application', 'ui_datepicker', :cache => 'cached' %>
+
+### Pixelmator ###
+
+My artistic skills have not improved, but I did enjoy spending a
+Saturday learning Pixelmator by trial and error.  The green bathroom
+tiles pattern for the top bar came from
+[colourlovers](http://www.colourlovers.com/).  Unfortunately, I can't
+remember the exact pattern I used.  My proudest bit was probably using
+a Gaussian blur on a duplicate layer of the tiles, fading it with low
+opacity, and then staggering it for a subtle shadow to the tiles.
+There are some [cool
+podcasts](http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=284768359)
+I ran into for learning Pixelmator too.
+
+### CSSEdit ###
+
+This tool continues to amaze me.  It completely changed the way I
+think about CSS.  Previously, I took a very programmer approach to it.
+I'd carefully structure my markup, and then try to create reusable
+chunks of style code.  I'd do all of this within emacs, happily
+imagining how gorgeous the page looks.  But when I'd load up the page,
+all the colors would clash, certain css selectors would be incorrect,
+and nothing would line up right.
+
+The CSSEdit way is completely different.  Once I finish the markup, I
+just stay in CSSEdit.  I love the instant feedback the app gives me.
+It constantly maps my typing to something visual.  I can push elements
+around to decide where they go, and I can quickly experiment with
+colors.  The color picker is especially amazing because I can use it
+to pick a color I like on my screen and then tweak it until it fits
+well on my page.
+
+### HELO Postfix ###
+
+For the SMS input feature, I had to setup postfix on my VPS to both
+send and receive email.
+
+I'm super grateful to dchen for showing me how to talk with SMTP and
+for helping me find postfix docs.  I can't say I can configure a
+hole-free working server, but I did manage to get it to receive emails
+and pass them off to the Rails app.  Seggy from work also told me
+about a cool trick to save the Rails startup time when on Mailer
+receive.  Instead of piping the mail message to a script/runner, do
+the parsing with some simple shell scripting and curl the necessary
+information to a hidden controller/action for processing.  Then you
+can reuse the Rails processes that are already running.
+
+Don't forget to allow the host, don't forget to postmap your
+'virtual', and don't forget to add an alias to have your rails process
+munge on the incoming mail messages.
+
+I saved a few incoming mail messages for testing.  Just build the
+TMail objects in a script.
+
+### A Better In Place Editor ###
+
+One common method of making a page feel more responsive is to delay
+the loading and execution of javascript as late as possible.  All the
+in place editing Rails plugins would generate both the markup and the
+javascript needed to have an in place editor.  It looks something like
+this:
+
+<span style="background: transparent none repeat scroll 0% 0%;
+  -moz-background-clip: -moz-initial; -moz-background-origin:
+  -moz-initial; -moz-background-inline-policy: -moz-initial;"
+  class="item-description expensive"
+  id="item_description_11_in_place_editor">55.20 for some
+  steak</span><script type="text/javascript">
+//<![CDATA[
+$('#item_description_11_in_place_editor').editInPlace({delete_url:'/items/destroy/11',
+  params:'authenticity_token=' +
+  encodeURIComponent('1c2d7f9a5f851c1a1618e7c1f4318f8c034b11ad'),
+  success:function(html, original_element) {eval(html);},
+  update_value:'item[description]', url:'/items/update/11'})
+//]]>
+</script>
+
+That is a lot of markup for every in place editor.  Instead, I
+refactored this to have a loop at the end of the page to create all
+the in place editors after the markup has been fully loaded.  The
+downside to this is that a quick user might try to click on an item
+before the whole page has fully loaded.  But the cleaner markup and
+delayed execution are worth it in my opinion.
+
+### TMail ###
+
+the emails SMS-fu gets maybe multipart with advertisements and junk in
+them.  To get to the actual plain text body for the item descriptions,
+I used:
+
+TMail::TMail.parse(File.read('tmobile_email')).parts.detect { |m|
+m.content_type == 'text/plain'}.body
+
+Good for testing too.
+
+
+### JQuery Default Text ###
+
+Wrote my first little jquery plugin to swap a greyed out default text
+on input fields.  Here's a demo, and here's the code
+
+
+### Model Preferences Plugin ###
+
+I started writing this for my housing app, but didn't really have a
+solid use case for it then.  It was also very messy to use in the
+views and there were lots of DAVs.  I've cleaned it up a lot since
+then, and it's definitely ready for primetime.
+
+
+### CSS Rounded Corners ###
+
+for ff3 and safari
+
+### UserVoice ###
+
+### Optimizations ###
+
+Learned to use mod_deflate.  Use yuicompressor and added it to my
+deploy tasks.
+
+### Flot ###
+
+what can i say, this is an amazing jquery library.
+
+### Timezones, time between rails and javascript ###
+
+Made a plugin to handle the conversions.  Learned about date.format
+plugin, but feel that it's a little heavy since I only use it once.
+
+### HTML Fieldsets ###
+
+didn't know about these guys, but useful, and interesting to style.
+
+
+### YAML-db ###
+
+Great for testing on real data.
+
+### Sphinx + Cap ###
+
+super easy to define common case for using sphinx.  updated my cap
+deploy to reindex on deploy.  problems with paginating results.

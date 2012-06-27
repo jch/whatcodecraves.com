@@ -1,0 +1,6 @@
+# Rails Coupling Test #
+
+A good test I found for testing how coupled a Rails app is to try
+navigating through the app via the console.  Can you create models
+without using the views?  Can you hit controllers with the 'app'
+variable?  Can you do what a browser does with an irb console?

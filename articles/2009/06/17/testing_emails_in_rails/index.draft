@@ -1,0 +1,52 @@
+# Testing Emails in Rails #
+
+One of the neat things that we built in [Coupa](http://www.coupa.com/)
+is the ability for users to interact with our app via email.  We send
+them an email asking them to take action on some document, and they
+can reply to that same email with the information we need.  The reply
+email comes in, Rails wraps it up all nice for us, we do something
+with it, and the users are happy...  Well, they're happy until it
+breaks.  There are tutorials for testing ActionMailer, but I haven't
+seen a good overview for testing **receiving emails**.
+
+Rails makes this [pretty
+trivial](http://am.rubyonrails.org/classes/ActionMailer/Base.html#M000019)
+and there a great introduction to
+[ActionMailer](http://guides.rubyonrails.org/action_mailer_basics.html)
+and [receiving
+emails](http://guides.rubyonrails.org/action_mailer_basics.html#receiving-emails#receiving-emails)
+over at RailsGuides.
+
+First you need to create yourself a good fixture to test with.  What I
+do is grab the raw email from my server, or do a 'Show original' in
+Gmail.  Here's a sample of what it might look like:
+
+    From foo@bar.com  Thu Jun  4 19:47:48 2009
+    Return-Path: <foo@bar.com>
+    X-Original-To: supplier_reviews@devtrunk.coupahost.com
+    Delivered-To: coupahost@ip-10-250-11-209.localdomain
+    Received: from mail-qy0-f203.google.com (mail-qy0-f203.google.com [209.85.221.203])
+              by ip-10-250-11-209.localdomain (Postfix) with ESMTP id BEFDD143A8
+              for <supplier_reviews@devtrunk.coupahost.com>; Thu,  4 Jun 2009 19:47:46 +0000 (UTC)
+    Received: by qyk41 with SMTP id 41so1534661qyk.13
+            for <supplier_reviews@devtrunk.coupahost.com>; Thu, 04 Jun 2009 12:47:46 -0700 (PDT)
+    MIME-Version: 1.0
+    Received: by 10.151.130.1 with SMTP id h1mr4296250ybn.172.1244144866416; Thu,
+              04 Jun 2009 12:47:46 -0700 (PDT)
+    In-Reply-To: <4a2824bbefffa_345440ca37e11a@ip-10-250-11-209.tmail>
+    References: <4a2824bbefffa_345440ca37e11a@ip-10-250-11-209.tmail>
+    Date: Thu, 4 Jun 2009 12:47:46 -0700
+    Message-ID: <ba22682b0906041247w437bfafdy7116f02f354cca39@mail.gmail.com>
+    Subject: Re: Supplier feedback requested
+    From: Joe Schmoe <foo@bar.com>
+    To: Coupa Supplier Feedback <supplier_reviews@devtrunk.coupahost.com>
+    Content-Type: multipart/alternative; boundary=001e680f148ccfdb52046b8b0ce8
+    X-Virus-Scanned: ClamAV 0.94.1/9420/Thu Jun  4 13:11:00 2009 on ip-10-250-11-209.ec2.internal
+    X-Virus-Status: Clean
+
+    --001e680f148ccfdb52046b8b0ce8
+    Content-Type: text/plain; charset=ISO-8859-1
+    Content-Transfer-Encoding: 7bit
+
+    On Thu, Jun 4, 2009 at 12:47 PM, <do_not_reply@devtrunk.coupahost.com>wrote:
+

@@ -1,0 +1,21 @@
+# Going Down the Stack #
+
+I keep a text file of ideas that I'd like to implement at some point.
+Some of them are quick utilities, easily written as a bash or perl
+script.  Others are so complex that I don't even know where to start.
+Currently, there's no organization or prioritization to what I plan to
+write.  I simply add another bullet point every time I think of
+something.  Sometimes, they stay relevant, sometimes they don't.
+
+After talking to Daniel a bunch about making our own OS, and reading
+about OpenBSD and other large systems, I came up with my biggest
+project yet:  programming top down.  People talk about web application
+stacks like LAMP (Linux Apache MySql PHP).  My idea is to program a
+similar stack... from scratch.  On the top of my stack would be user
+applications like Flaco blog, then one step down you'd have system
+services like a web server, take 2 steps down to have an operating
+system, then 1 step back up to services that the OS provides.  How
+cool would it be to know that from start to finish, a majority of the
+code being run was written by yourself?  Of course, I'd probably have
+binary compatibility so I don't have to rewrite some apps that I
+already like.

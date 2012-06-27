@@ -1,0 +1,34 @@
+# Web Programming #
+
+These days, the only programming I do is for the web.  I spend a full
+day at work doing Rails with Coupa, and then I come home and futz with
+my housing app while watching TV with a beer in my hand.  It's not the
+only paradigm of programming I'm locking myself into, but there are
+some damn good reasons for me to do it exclusively at the moment.
+
+Considering the [state of the web](http://0at.org/summer-2008.html)
+
+One thing that I thought of in the shower was how to grow my web
+programming skills.  As I see more code, and more ways to do things, I
+feel that I should bootstrap myself into higher abstractions.  One way
+I plan to do this is to start writing reusable blocks of code for
+common patterns I see in webapps.  A few that I've noticed coming up
+over and over again:
+
+* RSS feeds
+* Threaded discussions
+* Seeding databases
+* Event / Notification system (acts_as_triggerable)
+* Authentication - already exists, but I feel it's too sprawled out
+                    and should be more configured than code generated.
+* Permissions - same as authentication
+* Search - haven't done anything advanced yet
+* Sharing - (acts_as_shareable) email to friend, dig buttons
+* Mapping - the spatial kind
+* Annotations - tags is just one example
+
+Once I run into a need for any of these, I'd like to write a reusable
+standalone module and externalize it from the project.  Since I've
+been turned into a firm believer of [Rspec](http://rspec.info/), I
+plan to create my plugins via the [rspec_plugin
+generator](http://evang.eli.st/blog/2007/4/4/rspec_plugin-generator).

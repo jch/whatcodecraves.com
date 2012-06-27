@@ -1,0 +1,7 @@
+class Page
+  has_many :invites
+end
+
+@page = Page.new
+@page.invites << Invite.new  # page is new, will blow up
+

@@ -1,0 +1,39 @@
+# Speed up Thinking Sphinx in Development Mode #
+
+Let's see the rewards before we examine the problem:
+
+<table>
+  <th>
+    <td><td>
+    <td>Before</td>
+    <td>After</td>
+  </th>
+  <tr>
+  </tr>
+</table>
+
+    ActiveSupport::Dependencies.history.size
+Trivial script/runner
+reload! from script/console
+
+Prereqs / Assumptions
+* config.eager_load_paths = []
+
+thinking sphinx only needs to know which of your models have indexes defined on them when it:
+* generates a sphinx config file
+* delta indexes?
+
+But if you look at the init.rb, you'll see that it calls
+ThinkingSphinx.configuration.load_models, which will cause all models
+to be loaded *per request* in development mode, and on the first
+request in production mode:
+
+    ActionController::Dispatcher.to_prepare :thinking_sphinx do
+      ThinkingSphinx::Configuration.instance.load_models
+    end
+
+* explicitly define ThinkingSphinx.indexed_models instead of figuring
+  it out by loading all models.
+
+* introduce new config variables that you set
+  - ThinkingSphinx.reload_models = if true, then do to_prepare

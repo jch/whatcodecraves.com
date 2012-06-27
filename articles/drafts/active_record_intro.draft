@@ -1,0 +1,27 @@
+# Active Record Magic #
+
+I first learned about Active Record from the Rails framework.  My
+immediate reaction was confusion and fear: How could you put so much
+faith in a system implemented on black magic?  Well after using it
+more, I've grown to love and trust it more and more.  I did more
+research to support *why* Active Record is a good idea.
+
+According the Martin Fowler, the guy who coined the term, Active
+Record is
+
+    An object that wraps a row in a database table or view,
+    encapsulates the database access, and adds domain logic on that
+    data.
+
+Wow, that was pretty straightfoward.  There isn't too much jargon, but
+to put it in even more layman terms, Active Record lets you treat
+database rows as full fledged objects.  It streamlines the process of
+retrieving rows (records) from a database, and wrapping the data of
+each of those records into an object.  What's more, this design
+pattern doesn't require database nor objects.
+
+## ActiveRecord Rails Library ##
+
+I'm a sucker for this library.  It appeals to me on all levels of it's
+design.  It's simple in design and in usage, it's intuitive in the
+default case, and it's flexible for rarer cases.

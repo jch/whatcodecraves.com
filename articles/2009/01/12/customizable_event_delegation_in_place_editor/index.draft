@@ -1,0 +1,95 @@
+# jQuery Customizable Event Delegation In Place Editor #
+
+That title's quite a mouthful to say!  Unfortunately, I couldn't bring
+myself to call it 'Yet Another In Place Editor'.  YA-IPE or ED-IPE?
+For my [spending tracking pet project](http://www.kwiqi.com/), I
+wanted the convenience of an in place editor.  Luckily, [Dave
+Hauenstein](http://davehauenstein.com/code/jquery-edit-in-place/) had
+created a fantastic jQuery plugin that did just the trick.  It worked
+great for a while, but the fact that each IPE had to be attached to a
+specific DOM elements meant I had to write extra glue code to create a
+new IPE everytime something was inserted into the DOM.  I made
+numerous tweaks to it until I ended up rewriting most of it to fit
+what I wanted.  The resulting plugin requires you to fill in more
+options instead of working out of the box like some of the other
+editors.  The upside is that you can have complete control over the
+html of the IPE, and also you can declare it all in one place and have
+it work for all future dom inserts.
+
+For the impatient, the code is [available here]().
+
+## Getting Started ##
+
+The function to register new IPE's is:
+
+    editInPlace(editors_options)
+
+<code>editors_options</code> is a hash whose properties are jQuery
+selector strings, and values are hash of options for the IPE to make
+for that jQuery selector.
+
+    editors_options = {
+      'jquery_selector1': { options for this jquery_selector1 },
+      'jquery_selector2': { options for this jquery_selector2 }
+      // ...
+    }
+
+Here's a basic example:
+
+    editInPlace({
+      'p.item': {
+        form_html: "<form><input type='text' name='item[description]' value='edit me'></input></form>"
+        update: {
+          url: "/some/action",
+          type: "POST",
+          dataType: "html",
+          success: function(response) {
+            eval(response);
+          }
+        }
+      }
+    });
+
+This code creates an IPE for every existing and all future elements
+that match the selector <code>p.item</code>.  When you click on one of
+these elements, <code>form_html</code> is drawn.  When you click
+'Save' or hit return, <code>form_html</code> is serialized and an Ajax
+request is sent with the options specified by <code>update</code>.
+
+The <code>update</code> options are similar to the ones for
+[jQuery.ajax](http://docs.jquery.com/Ajax/jQuery.ajax#options).  The
+difference is you can specify a callback function for the key 'url'
+that takes the current editor as an argument.
+
+update: {
+  url: function(editor) {
+    var item = new Item(editor.target);
+    return "/items/update/" + item.id;
+  },
+  /* snip */
+}
+
+[editor.target](API reference) is a jQuery object that matched the
+selector you listed in <code>editors_options</code>.  In this example,
+<code>editor.target</code> will be a <code>p.item</code>.
+
+Another difference is the <code>success</code> callback will bind the
+current editor object as the 2nd argument.
+
+success: function(response, editor) {
+  editor.cancel();
+  editor.target.replaceWith(response);
+}
+
+For detailed reference of all the options, check out [the
+documentation]().  I think some of the other IPEs are quicker to get
+you up and running, but the event delegation version I wrote is more
+customizable and gives you a better base to build upon.  This is
+especially useful for sites have multiple IPEs on the same page, and
+sites that create an arbitrary number of IPEs on the fly.
+
+Big thanks to [Dave](http://davehauenstein.com/) for the original
+plugin, and to [James
+Padolsey](http://james.padolsey.com/javascript/screencast-1-event-delegation-in-jquery/)
+for showing me a better way of finding the parent with jQuery's
+<code>is</code> method.

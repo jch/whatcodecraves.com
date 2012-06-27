@@ -1,0 +1,132 @@
+// Core variables and mixins
+@import "bootstrap/variables"
+
+// Typography
+// -------------------------
+$baseFontSize:          16px
+$baseLineHeight:        21px
+$headingsFontWeight:    bold
+
+// GRID
+// --------------------------------------------------
+
+// Default 940px grid
+// -------------------------
+$gridColumns:             10
+$gridColumnWidth:         60px
+$gridGutterWidth:         20px
+$gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1))
+
+@import "bootstrap/mixins"
+
+// CSS Reset
+@import "bootstrap/reset"
+
+// Grid system and page structure
+@import "bootstrap/scaffolding"
+@import "bootstrap/grid"
+@import "bootstrap/layouts"
+
+// Base CSS
+@import "bootstrap/type"
+@import "bootstrap/code"
+
+// Utility classes
+@import "bootstrap/utilities"
+
+*
+  box-sizing: border-box
+
+/* Use container-fluid to allow resizable width, but capping a max */
+body
+  max-width: ($gridRowWidth + 100px)
+  margin: 0 auto
+  background: #ccc
+
+
+/* wraps all content */
+#wcc
+  background-color: $white
+
+
+#intro
+  background-color: $black
+  color: $white
+  border-bottom: 2px solid #920611
+  position: relative
+
+  .content
+    clear: both // from floating .content in #intro
+    padding: 1em
+
+    p
+      font-weight: 100
+
+  .social
+    a
+      background-image: asset-url('sprites.png', image)
+      display: inline-block
+      width: 54px // slightly clipped :(
+      height: 53px
+
+    .email
+      background-position: -55px 0
+
+    .github
+      background-position: -110px 0
+
+    .rss
+      background-position: -165px 0
+
+    .twitter
+      background-position: -220px 0
+
+/* main content wrap */
+#main
+  padding: 0 2em
+  padding-bottom: 3em
+  min-height: 500px // fill footer to bottom w/out using fixed
+
+  /* for listing posts or projects */
+  ul.posts
+    list-style: none
+    margin: 0
+
+    li
+      margin-bottom: 1em
+
+#footer
+  padding: 0 1em
+  background-color: #222
+  color: #fff
+  p
+    margin: 0
+    font-size: 11px
+    line-height: 30px
+
+/* narrow screen to grid width */
+// TODO: sass not interpolating $gridRowWidth
+@media screen and (max-width: 780px)
+  /* undoes bootstrap default margin */
+  .full-width
+    margin-left: -20px
+    margin-right: -20px
+
+@media screen and (min-width: 650px)
+  #intro
+    background: #000 right top asset-url('me.jpg', image) no-repeat
+    .content
+      width: 400px
+      padding: 30px
+      background: rgba(0,0,0,0.7)
+
+      p
+        font-size: 24px
+        line-height: 36px
+
+/* Draw a background and a box around content if exceed the width of the grid */
+// TODO: $gridOverWide: $gridRowWidth + 1
+@media screen and (min-width: 781px)
+  #wcc
+    margin: 1em
+    @include box-shadow(0 0 6px lighten(#000, 50%))

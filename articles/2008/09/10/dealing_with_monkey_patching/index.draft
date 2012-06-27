@@ -1,0 +1,97 @@
+# Dealing with Monkey Patching #
+
+As I read [Ola Bini's
+posts](http://olabini.com/blog/2008/09/evil-hook-methods/) about evil
+method hooks, I find myself nodding in agreement with the arguments
+he's making.  Ola's post made a good point that being explicit when
+including or extending modules makes the code cleaner and easier to
+debug.  I agree with this, but at the same time I find it hard to pry
+myself away from the siren-call of certain idiomatic Rails mixins.  It
+can be next to impossible to have explicit includes with existing
+plugins that mixin modules behind the scenes without you knowing.
+
+So what's a guy to do?  Jay Fields wrote some [opinions and
+thoughts](http://blog.jayfields.com/2008/09/domain-specific-languages-dont-follow.html)
+on the issue.  His potential solution near the end of his post is to
+add another level of indirection and define an interface for mixin
+loading.  This not only enforces a consistent way to create new
+mixins, but it also supports wrapping existing naughty modules in the
+same consistent fashion.  The extra level of indirection does come at
+a cost.  There is more initial work because all existing mixins have
+to be tweaked to be loaded with the mixin loader.
+
+Fortunately, I believe that we can build on top of this mixin loading
+mechanism to make it much more useful.  We can put diagnostic
+functionality into this new layer to help us with debugging.  For
+example, when a class calls 'become' multiple times to add
+functionality to itself, we can write checks in the 'become' method to
+spit out warnings whenever methods are overridden.  We can use the
+[Immutable
+module](http://scie.nti.st/2008/9/17/making-methods-immutable-in-ruby)
+at environment load time to catch potential conflicts before.  We can
+write tools to 'check' a plugin when we install it and use it.  We can
+add methods to scan a new plugin for conflicts before we actually add
+the plugin to our project.  We can have more useful information in the
+debugger than a module's ancestors.  Once we get thinking, there's a
+_lot_ of possibilities to be explored here.
+
+http://rails-engines.org/introduction unrelated or make a mention here?
+
+On top of what can be done for keeping a system more maintainable,
+I've seen and and learned about situations when it's bad to play
+meta-game.  The most vivid example in my mind is UserEngine and
+LoginEngine.  I'm currently refactoring out these two mini-app plugins
+out of our project at work to prepare for our migration to Rails 2.x.
+
+The first offensive is a great real life example of Ola's evil hooks.
+The UserEngine module is included into ApplicationController, and
+ApplicationHelper.  When you look at the hook code, you see:
+
+    def self.included(base)
+      # we have some specific stuff that we *only* want added to the
+      # application controller.
+      if base == ApplicationController
+        base.class_eval { include UserEngine::AuthorizedSystem }
+      end
+    end
+
+From a refactoring standpoint, I would've been much happier if they
+required developers to explicitly include UserEngine::AuthorizedSystem
+in ApplicationController.
+
+The other usage of meta I didn't like was specifying model
+associations and callbacks outside of the model.
+  module UserEngine::AuthorizedUser
+    def self.included(base)
+      base.extend(ClassMethods)
+      base.class_eval {
+        has_and_belongs_to_many :roles, :join_table => UserEngine.config(:user_role_table)
+
+        # ensure that all users recieve the 'user' role
+        before_create :add_user_role
+      }
+    end
+  end
+
+I didn't like this because I think it makes it hard to determine what
+associations a User has.  If I were to include this module into my
+User class, I would be clueless about the existence of the 'roles'
+association and :add_user_role callback.  Initially my reaction was:
+"I'll never specify ActiveRecord associations and callbacks outside my
+models again!", but then I realized that *never* is too harsh a word.
+For example, acts\_as\_taggable is a good example of specifing model
+associations in a plugin.  In fact, even my own [model preferences]()
+plugin specifies an association!  I feel that when the functionality
+defined by a module is reusable across multiple models, then the
+association can be written in a plugin.  Furthermore, I think these
+plugin macros should always allow a developer to at a minimum specify
+the name of the association.  For example, my plugin model_preferences
+defaults to setting this association:
+
+    has_many :preferences, :as => :model
+
+However, rather than hiding the association away, I allow developers
+to specify options on the macro:
+
+    has_preferences :association => :preferences
+

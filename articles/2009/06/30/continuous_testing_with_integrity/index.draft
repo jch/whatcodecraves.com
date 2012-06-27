@@ -1,0 +1,9 @@
+# Continuous Testing with Integrity #
+
+export PATH so that it uses REE's gems.
+
+http://integrityapp.com/
+http://test.locomotivation.com/blog/2009/02/25/integrity.html
+
+
+require 'integrity/notifier/email'

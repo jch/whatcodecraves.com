@@ -1,0 +1,91 @@
+# Rails Pitfalls and Myths #
+
+When people are tooting the Ruby on Rails horn, they only hint at the
+pitfalls that are around the corner.  I think Ruby's an awesome
+language, and I think Rails is a very well designed killer app for
+Ruby.  Not everything's awesome though...
+
+## Community ##
+
+As with all things good and bad, a flood of idiots jumped on the
+bandwagon after Rails got off the ground.  I'm sure the initial
+adopters were a good group, but once there were enough plug and play
+tutorials, the annoying folks caught a scent and followed it.  I hate
+the "don't think, just do" mentality that Rails tutorials and
+screencasts seem to encourage.  I understand that scaffolding is a
+good way to get bootstrapped, and that automation and abstraction of
+common tasks is good in general However, I think that not enough
+people dig deeper to figure out how that stuff works, and how to form
+their own.  Instead, the scaffolding becomes the production, and copy
+and paste hacks are everywhere.
+
+## Documentation ##
+
+I always used Java's API as my documentation benchmark.  The official
+Java docs are always complete, with a well written overview and solid
+details.  In contrast, when I first saw the Rails documentation, I
+gagged on the completely useless two upper rows in the first column,
+and I also gagged on the content itself.  A big part of that was
+probably me not being familiar with the style of the documentation and
+the style of the framework itself.  But even now, I feel that the
+documentation is lacking in detail for overview sections, and often
+have blank docs for non-trivial methods.  Whereas with Java docs, it
+felt like I could use them with no prior knowledge of Java, using the
+Rails docs is a game of combining prior Rails knowledge and the docs
+themselves.  The more Rails you know, the easier it is to use the
+docs.
+
+## Performance ##
+
+I can't wait till the day that this becomes an issue for me.  I can
+see why this is a legitamate reason for sites with large existing user
+bases to not use Rails.  However, I think it's a shame when a student
+or hobby programmer cites this as a reason not to learn it.  Learn it
+because it's interesting and will expose you to a different
+perspective of programming and style, not because it won't scale!
+
+My other big beef with the performance argument is that it's
+shortsighted.  When I heard of Java in high school, people bitched and
+moaned about how slow it was then.  If you look at Java now, it's a
+completely different beast.  The performance penalty is rarely
+mentioned (if at all).  In fact, Java and C++ are so often grouped
+together that I wonder how many people still remember Java as being
+slow.
+
+Perhaps Blain Cook phrased it best in his [blog
+post](http://romeda.org/blog/2008/05/scalability.html):
+
+> For all those who don't get it, languages don't scale, architectures do.
+
+(Definitely read the corresponding article ["Dynamic Lanugages Strike
+Back"](http://steve-yegge.blogspot.com/2008/05/dynamic-languages-strike-back.html))
+
+## Conventions ##
+
+Rails conventions have been a breath of fresh air for me.  It takes a
+while to learn these conventions and idioms, but once you have them,
+you can apply them in a consistent fashion thoughout all your code.
+This allows me to keep larger hunks of code and concepts in my head
+because I can categorize by my conventions.  I'll remember where I did
+what based on what categories it belongs to.  If it's related to the
+state of a model, then it's in that model.  If something's wrong with
+urls, open up routes.  Database table names are a breeze.  The list
+goes on and on.
+
+This convention's style programming reminds me of using a Mac.  The
+consistent [UI
+guidelines](http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGIntro/chapter_1_section_1.html)
+allow me to develop subconcious reflexes for the most common tasks.
+It allows me to focus on *what* needs to be done, rather than *how* it
+can be done.
+
+##
+
+Pros:
+* well laid out app structure facilitates testing.
+* ingrained conventions leads to consistent coding style.
+
+Cons:
+* ruby metaprogramming may lead to abuse.
+* conventions may lead to ambiguous behavior.
+

@@ -1,0 +1,87 @@
+# Designing Away Problems #
+
+Something that's always stuck with me with my first computer science
+course was how *simple* and elegant the solutions were.  Granted, the
+problems were designed to be thought exercises, and the language of
+choice was Scheme.  The funny and twisted part of this was how
+amazingly obvious the solutions were as soon as you saw them.
+
+As a general rule of thumb, I learned that if my solution was more
+than 5 lines long, I'd probably be doing something wrong.  I don't
+even mean 5 super long and clever lines.  Those 5 lines fit within 80
+columns, and there might be a comment or 2 sprinkled in there.
+
+Fast forward a few short years, and it seems like that rule of thumb
+might have to be promoted to something more definitive.  Every time I
+bang my head with a problem, it's always because I don't fully
+understand the problem.  Sometimes, I even get lucky and write an ugly
+hunk of code that just *happens* to behave in a way that solves the
+problem.  More often than not, when I revisit the problem, I slap
+myself a few times and find a better solution.
+
+## Library Doesn't Do What You Want ##
+
+If the library is respectable and well-written, it's probably a good
+time to rethink why you needed that functionality in the first place.
+This doesn't mean using the library in unintended ways to get what you
+want.  Maybe the functionality you want should come from another
+library or be in a separate component entirely.
+
+## Complex Logic ##
+
+I'll admit it, I've never been very good at keeping code in my head.
+Let's just say that head code-buffer is smaller than I'd like it to
+be.  Whenever I see a contiguous block of code that's more than half a
+page long, my body goes into super-calorie burn mode.  Within half an
+hour, I'll be starving and completely abandon trying to understand the
+block.  I much prefer smaller blocks of code that delegate actions as
+needed.  To get rid of those nasty conditional blocks, I like to
+delegate the work the components.
+
+Instead of:
+if element == 'p'
+  do_paragraph
+elsif element == 'h1'
+  do_heading
+... # billion more conditionals for every tag
+else
+  error_out
+end
+
+I much prefer:
+begin
+  element.do_stuff
+rescue NoMethodError
+  error_out
+end
+
+and have the different elements be responsible for what it needs to
+do.  Alternatively, if I wanted to keep all the do_stuff actions out
+of the individual components, I like to use a dash of metaprogramming:
+
+# Dispatcher code
+if self.respond_to? "#{element}_do_stuff"
+  self.send "#{element}_do_stuff", element
+else
+  error_out
+end
+
+# Action code
+def p_do_stuff(element)
+  # ...
+end
+
+def h1_do_stuff(element)
+  # ...
+end
+
+This meta-way doesn't make your code file any shorter, but it does
+separate out the different actions.  This makes it easy to add another
+function to the 'Action code' section without modifying the
+dispatcher.  Also, this makes it much easier to test the individual
+actions.
+
+Another great way of getting rid of conditionals if you know all the
+components you plan on working with ahead of time is to use the
+[Visitor Pattern]()
+

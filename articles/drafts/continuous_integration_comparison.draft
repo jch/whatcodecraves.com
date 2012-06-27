@@ -1,0 +1,67 @@
+Continuous Integration
+
+Reviews:
+http://www.javaworld.com/javaworld/jw-11-2006/jw-1101-ci.html
+
+
+Hudson
+======
+Java based
+
+http://blogs.sun.com/arungupta/entry/top_10_features_of_hudson
++ self contained, only needs java? (java -jar hudson.war)
++ plugins / external clients
++ distributed builds
++ upstream dependencies trigger downstream builds (fingerprinting)
+
+- requires java if you're not on a java stack
+
+
+BuildBot
+========
+http://buildbot.net/trac
+
++ documentation (http://djmitche.github.com/buildbot/docs/0.7.11/#Top)
++ distributed builds
+
+- requires: python + twisted
+
+Cruise Control
+==============
+
+http://www.javaworld.com/javaworld/jw-11-2006/jw-1101-ci.html
++ good notifications
++ self contained
+
+- bigger learning curve
+
+Continuum
+=========
+
+http://www.javaworld.com/javaworld/jw-11-2006/jw-1101-ci.html
++
+
+
+Apache Gump
+===========
+http://gump.apache.org/
+
+
+http://www.ibm.com/developerworks/java/library/j-ap09056/index.html
+http://www.javalobby.org/articles/continuous-integration/
+
+
+http://sin.tigris.org/Sin%20-%20Continuous%20Integration%20Rethought.html
+http://schettino72.wordpress.com/tag/scons/
+http://stackoverflow.com/questions/535/continuous-integration-system-for-a-python-codebase
+http://stackoverflow.com/questions/225598/pretty-continuous-integration-for-python
+
+Hosted CI Ideas
+===============
+benefits:
+- build on commit
+- send notifications on failure
+- identify changeset that breaks build
+
+* need to have access to your code, your db, your app servers
+*

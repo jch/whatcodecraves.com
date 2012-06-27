@@ -1,0 +1,76 @@
+;; This is my sample .emacs file.  There's actually a bunch of plugins
+;; I've decided to snip out, but these are the core features that I use.
+
+;; Set up general
+(menu-bar-mode -1)
+(global-font-lock-mode t) ; syntax-highlighting
+(set-background-color "black")
+(set-foreground-color "white")
+
+;; doing a replace followed by a search, uses the last search string
+(setq query-replace-interactive t)
+
+;; default tab width to four spaces, and use spaces for tabs
+(setq default-tab-width 4)
+(setq-default indent-tabs-mode nil)
+
+;; title bar shows name of current buffer
+(setq frame-title-format '("emacs: %*%+ %b"))
+
+;; don't show the startup message every time, I know I'm using emacs
+(setq inhibit-startup-message t)
+
+;; Don't truncate, wrap, or fold lines of split windows
+(setq truncate-partial-width-windows nil)
+(setq truncate-lines nil)
+
+;; use y or n instead of yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; quick move cursor to top or bottom of screen
+(defun point-to-top ()
+  "Put point on top line of window."
+  (interactive)
+  (move-to-window-line 0))
+
+(defun point-to-bottom ()
+  "Put point at beginning of last visible line."
+  (interactive)
+  (move-to-window-line -1))
+
+(defun next-line-noscroll ()
+  "Scroll the buffer one line down without moving where point is."
+  (interactive)
+  (next-line -1)
+  (scroll-down 1))
+
+(defun previous-line-noscroll ()
+  "Scroll the buffer one line up without moving where point is."
+  (interactive)
+  (next-line 1)
+  (scroll-down -1))
+
+; Set up keys
+(global-unset-key "\M-g")
+
+(global-set-key "\M-1" 'compile)
+(global-set-key "\M-3" 'point-to-top)
+(global-set-key "\M-4" 'point-to-bottom)
+(global-set-key "\M-g" 'goto-line)
+(global-set-key "\M-n" 'next-line-noscroll)
+(global-set-key "\M-p" 'previous-line-noscroll)
+
+; Default Mode and Fill
+(setq default-major-mode 'text-mode)
+(setq-default auto-fill-function 'do-auto-fill)
+; replace perl-mode with c-perl-mode
+;(defalias 'perl-mode 'cperl-mode)
+;(cperl-set-style 'K&R)
+
+; fix annoying shell backspace problem
+; 0 for ibook, 1 for imac
+(normal-erase-is-backspace-mode 0)
+
+; Dired remove directories
+(setq dired-recursive-deletes t)
+

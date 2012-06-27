@@ -1,0 +1,28 @@
+django sucks
+
+retarded error messages.  If you get a runtime error in your views.py, Django complains with "ViewDoesNotExist".
+
+why are forms specified in form objects? they're obviously for templating but instead you have to define these model-like objects to use them.  You end up pulling all the html stuff into a .py file.  How completely non-intuitive.
+
+stupid API - form.as_p, form.as_table?  really guys? What if you want to add a css class to a single one of the fields?  Oh, you can't.  You have to do it yourself and not use any of the helpers.
+
+ModelForm is stupid.  You either have a blank object that's basically a scaffold around a real model object, or you completely redefine a subset or identical set of the model again.
+
+stupid tools.  python manage.py shell does not import anything for you.  Sure this is because you only import what you need in each file, but why can't it do autoloading?
+
+default rendering of None or False is 'None' and 'False'.  Default return value for a null field is None
+
+useless top level templating tags
+divisibleby
+length_
+
+duplication of python in tempting system.  You can't use join
+{{ value|join:" // " }}
+
+urls.py routes are nice and easy to understand. i like that you can
+import other routes files so you can modularize your routes
+
+no default logging of queries, you have to install middleware before
+you can start developing.  Really you should be able to configure log
+verbosity, but the default should be to log sql queries if DEBUG is
+true.

@@ -1,0 +1,11 @@
+# Macports Cheatsheet #
+
+# update ports tree for new packages
+sudo port selfupdate
+
+# outdated installed ports
+sudo port outdated
+
+# installed ports
+sudo port installed
+

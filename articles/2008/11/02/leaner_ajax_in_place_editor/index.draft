@@ -1,0 +1,113 @@
+# Rolling Your Own AJAX in-place-editor #
+
+In-place-editors are input fields that activate on click.  They allow
+users to edit and save one field of a form at a time.  There are many
+plugins that abstract away the details of how an in-place-editor work,
+but there are benefits to getting your hands dirty and rolling your
+own plugin.
+
+A typical example of an in-place-editor that I've used for one
+of my personal projects is the following:
+
+<p id="in-place-editor">Click Me!</p>
+<div id="confirmation-message-20081102"></div>
+<script type="text/javascript" src="" />
+<script type="text/javascript">
+  $('#in-place-editor').editInPlace({
+    success: function(html, original_html) {
+               $('#in-place-editor').html(html);
+             }
+  });
+</script>
+
+It looks kind of verbose, but given a minute or two, it's pretty clear
+what the code is doing.  The markup shows the original text wrapped in
+a span, while the Javascript immediately below it registers an onclick
+handler to transform the span into an editable input field that'll
+submit to a server-side action.
+
+This works great if you only use a handful of in-place-editors on a
+page, but it will start to look very cluttered if you have more.  In
+fact, for my Money app, I typically get around 20 or more of these
+editors.
+
+## The Views ##
+
+Here's where I noticed my first easy optimization.  When I did a view
+source on one of my Money app pages, I noticed a very regular
+zebra-striped pattern of markup followed by Javascript.  The
+duplication was so bad that the size of the markup and Javascript
+easily outweighed the size of the actual content (highlighted in
+green).
+
+[INSERT PREVIOUS CODE WITH CONTENT IN GREEN]
+
+I attacked the problem by fixing the zebra-striping, and removing all
+of the duplication.
+
+[INSERT NEW CODE WITH CONTENT IN GREEN]
+
+This new code has tidy semantic markup for the content, and pushes all
+the previous duplication into the Javascript code at the end.  This
+makes the page load faster because the size of the page decreased from
+X bytes to Y bytes, and the page doesn't have to hiccup for every
+in-place-editor.
+
+The downside is that the content is not editable until the chunk of
+Javascript at the end of the page is run.  If the number of
+in-place-editors grows even larger, then this downside becomes even
+more noticable.  To fix this issue, we can find a happy
+compromise by running a chunk of Javascript for every *N*
+in-place-editors, where *N* is a configurable constant.
+
+## Javascript ##
+
+Now that the views are tidied up, I looked towards the chunk of
+Javascript at the end of the page.  Typically, the in-place-editors
+I've seen default to 3 texts for the content.  When the editor is
+inactive, the content has the original text.  On click, the editor
+turns into an input field with the original text.  On save, the editor
+removes the input field, and shows "Saving..." or some custom
+message.  On success, the editor shows the text that the user had
+typed in.  This looks something like:
+
+This was all fine and dandy until I wanted to do more when a change
+was successfully made.  Rather than hardcoding what to do on success,
+I added an callback that simply eval'ed the result returned from the
+server.  I changed my server-side code to return Javascript code
+instead of HTML.  Changes are highlighted in green.
+
+Specifically, if you're using Rails, the server-side change I
+described is to make your controller action do an inline <code>render
+:update</code> or to process an RJS template.
+
+## Server-side ##
+
+Another benefit of tweaking the in-place-editor is that I could keep
+my RESTful controllers.  The default in-place-editor plugin used it's
+own non-REST action instead of calling the 'update' action.  The
+default plugin is nice because it provides drop-in functionality.  But
+for just a little extra work, you get more consistent and maintainable
+code in your controllers.  Using the default plugin creates a special
+case that says, "Hey, if I'm doing an AJAX update, run this code
+instead of the normal update code".  Smells like duplication to me.
+There really should be no difference in an AJAX update and a normal
+form POST update.  The difference should only be the type of response
+that each update expects.
+
+## Was it worth it? ##
+
+Rolling your own in-place-editor has many benefits.  It can DRY up a
+lot of your code.  It can make your app more responsive and more
+efficient.  At the very least, it'll help you understand
+in-place-editors better.  That said, it doesn't always make sense to
+roll your own plugin.  The existing plugins are better supported, and
+they might be sufficient for your needs.  Even if the plugins aren't
+exactly what you want, it'd be easier to start with one as a base, and
+tweaking it to your liking.
+
+Personally, the in-place-editor was such a core part of the
+functionality of my Money app that it made sense to make a custom one.
+I'm toying with the idea of packaging up my own in-place-editor
+plugin.
+

@@ -1,0 +1,29 @@
+# Dealing with Backwards Compatibility #
+
+The happiest time for a software developer is the beginning of a
+project.  Filled with hope and optimism, the new project is always
+perfect in our heads.  There'll be interesting new challenges,
+interesting new problems, and the end result will be great for
+everyone and their mothers.  Even after that optimism fades out a
+little big, the programmer will happily continue to bang his head on
+design problems and bugs day after day.  But when you ask the
+innoculous question of backwards compatibility, the response will
+always be somewhat disheartening.
+
+Backwards compatibility is a fancy way of describing something that
+failed to be completely future proof.  Unfortunately, this happens to
+cover every step of the software making process.  The first design is
+guaranteed to be missing something.  Sometimes the assumptions might
+be completely wrong to being with.  Of course, this mistake won't be
+noticed until I've happily written a prototype that does 90% of what I
+want it to do.  No worries!  Several thousand calories of junk food
+and I can always brush off the failed attempt.  Besides, it's just a
+prototype that I'm throwing away anyways.
+
+Huffing and puffings, and several days later.  The programmer returns
+with a shinier attempt.  This attempt has tests and documentation.
+Extra care was taken to format everything to a tidy 80 columns.  Alas,
+this perfectly tested and clean solution is also not enough.
+
+
+http://osnews.com/story/20145/Is_Midori_Really_the_Next_Windows_

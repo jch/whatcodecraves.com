@@ -1,0 +1,37 @@
+# Debugging Rails Views #
+
+One nifty little feature of Textmate that I don't get in emacs are
+those little [textmate
+footnotes](http://agilewebdevelopment.com/plugins/textmate_footnotes)
+on the bottom of all pages.  I really like the idea of the plugin, but
+I find it lacking for determining what 'view' it should open.
+
+Ideally, I'd like to jump to the actual partial in question, or at
+least jump to the line that renders the partial.  At the moment,
+Textmate footnotes will only jump to the top most view.  This means
+that if I was on the 'edit' action, the footnotes would only let me
+jump to the 'edit' view, even if I was more interested in the
+'_summary' partial in the 'edit' view.
+
+Inspiration struck me that I should just wrap all partials with html
+comment blocks like this:
+
+    &lt;!-- BEGIN accounts/_payment.rhtml partial --&gt;
+    <%= render :partial => 'accounts/payment' %>
+    &lt;!-- END accounts/_payment.rhtml --&gt;
+
+Then inspiration hit me a second time that I don't have to type these
+out by hand, and can actually embed these comments in whenever render
+is called.  On top of the benefit of not having to type those
+comments, I can also control what environments those comments should
+be rendered.  I only really want those comments when I'm in the
+development environment.  To make this feature even fancier, I can
+introspect what line number the 'render' is being called at.  So the
+above becomes:
+
+    &lt;!-- BEGIN accounts/edit.rhtml:456 render accounts/_payment.rhtml partial --&gt;
+    <%= render :partial => 'accounts/payment' %>
+    &lt;!-- END accounts/edit.rhtml --&gt;
+
+Having it as a plugin also allows you to configure the formatting of
+the comments.

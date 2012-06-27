@@ -1,0 +1,57 @@
+# List Lovin #
+
+Ah, the humble list.  It's such an intuitive and simple structure that
+I'm afraid that I take it for granted sometimes.  Without it, how
+would we do groceries?  TODO lists would lack order, while bulleted
+lists would turn into blobs of paragraphs.  Let's take a moment to
+appreciate some of the amazing things we can do with lists.
+
+I think the first time I appreciated or even noticed lists was in
+CS61A.  The class was taught in Scheme, with the basic primitive data
+structure being a 'pair'.  The head of the pair is called the 'car',
+and the tail of the pair is called the 'cdr'.  When you draw one, it
+looks something like this:
+
+<img src="./tshirt-carcdr-full.jpg" alt="box and pointer diagram" />
+
+When you got bored of a pair, you chained them together by their cdr's
+and make funky list structures.  Hours of fun later, you might
+actually want to do something useful with these lists.
+
+    sum = 0
+    for(i=0; i<list.length; i++) {
+        sum += list[i]
+    }
+
+But that's both ugly and lifeless.  It's much more fun to say:
+
+    list.inject(0) { |memo, next| memo + next }
+
+As if Ruby's Enumerable methods weren't cool enough, I ran into this
+little jewel today while looking for a more readable way of summing
+over a list.  Rails mixes in a few additional methods that are [just
+smoking](http://api.rubyonrails.org/classes/Enumerable.html#M001793).
+The same line above can be written as:
+
+    list.sum
+
+or, in the case of a list of Money objects with attribute 'amount':
+
+    # Rails turns symbols to proc
+    # http://api.rubyonrails.org/classes/Symbol.html
+    list.sum(&:amount)
+    list.sum(0) { |money| money.amount }  # 0 for identity
+
+Another cool method that just brings back a wave of Scheme nostalgia
+is 'filter'.  Ruby calls it 'select'.  If you only want the first
+element out of a list that matches the predicate, use 'detect'.
+
+    # snuck in even? and odd?, useful lil Rails mixins
+    [1, 2, 3, 4].select { |n| n.even? }
+    # [2, 4]
+    [1, 2, 3, 4].detect { |n| n.even? }
+    # 2
+
+Wow!  It's just so concise and clean.  Check out the basic core Ruby
+[Enumerable
+methods](http://www.ruby-doc.org/core/classes/Enumerable.html) too.

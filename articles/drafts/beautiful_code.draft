@@ -1,0 +1,6 @@
+# Beautiful Code #
+
+* concise documentation - class comment, method comment
+* consistent formatting - indentation, comments, spacing, comment separators
+* logical namespacing   - putting things where they belong
+* logical code ordering - var decl's together, related statements together, protected/private in one place.

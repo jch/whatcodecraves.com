@@ -1,0 +1,54 @@
+# Emacs Development Workflow #
+
+I'm wasting the same amount of time every day on the same stuff.
+
+* open N terminals
+* cd to ~/projects/coupa_enterprise/trunk
+  * 1) svn up; start a script/server for Rails
+  * 2) start a emacs
+  * 3) leave for svn and ack'ing
+  * 4) mysql
+  * 5) terminal for deploying to staging
+
+* svn-x for visual diffs
+* textmate for find and replace
+
+I've gotten good at it, but I'd like to consolidate so I don't have to
+switch between so many terminals and apps.  I don't want to put my
+entire desktop into emacs (yet), but it'd be cool to stay in emacs for
+all my dev stuff.
+
+
+## Subversion ##
+
+PSVN was too slow and lists every single file in the buffer.
+[DSVN](http://svn.collab.net/repos/svn/trunk/contrib/client-side/emacs/dsvn.el)
+was much improved.
+
+## Navigation ##
+
+* improved TAGS support / file watch daemon to update tags on file change
+*
+
+## Cleaning up <code>.emacs</code> ##
+
+Learn some
+[elisp](http://www.gnu.org/software/emacs/emacs-lisp-intro/html_node/index.html)
+first.
+
+Read some [elisp recipes](http://www.emacswiki.org/emacs/ElispCookbook)
+
+Adopt a convention for emacs extensions
+
+~/.emacs.d/plugins/plugin-name/
+  plugin-name.el
+  load-plugin-name.el
+
+Write a 'load-plugins' function.
+
+
+## Left Wanting ##
+
+A good Cocoa implementation of emacs.  Because pbcopy will only take
+me so far.  Clicking on stuff can also be faster for code browsing.
+Better anti-aliased text rendering.

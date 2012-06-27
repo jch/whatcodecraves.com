@@ -1,0 +1,11 @@
+# RSpecing Controller Filters #
+
+* 'controller' references the current controller, so can do something
+  like  'controller.should_receive(:foo)'
+
+* test that the filter is run on the actions that should have the
+  filter applied.
+
+* avoid assigning instance variables in your filters because that
+  causes a lot of coupling to the controller actions.  This leads to a
+  ton of stubbing in the actions' specs.

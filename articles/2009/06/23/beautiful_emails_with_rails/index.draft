@@ -1,0 +1,38 @@
+# Beautiful Emails #
+
+From signup confirmations to newsletters, emails continue to be a core
+method for communicating with your users.  It's important to keep a
+high attention to detail in your email templates so your users will
+instantly relate the message from your main website.  Unfortunately,
+it's IE6-epic levels of difficult to make emails look consistent
+between all the different mail clients.  Here are some tips I've
+used in the past.
+
+For starters, which email do you think communicates better?
+
+
+
+## Spam ##
+
+Before we tackle the problem of aesthetics, it's important to check
+that users can even receive your emails.  Your mail server may have
+been [blacklisted](http://www.mxtoolbox.com/) so that your messages go
+straight to spam.  If.
+
+
+## Styling ##
+
+## Images ##
+
+
+
+## Graceful Degradation ##
+
+Now that your emails are colorful and filled with images, take the
+time to consider the poor souls whose mail client strips out all that
+hard earned formatting.  You don't want them to suffer through
+
+
+http://ryandaigle.com/articles/2008/9/7/what-s-new-in-edge-rails-mailer-layouts
+http://guides.rubyonrails.org/action_mailer_basics.html
+http://www.37signals.com/svn/posts/604-navigating-the-html-email-jungle

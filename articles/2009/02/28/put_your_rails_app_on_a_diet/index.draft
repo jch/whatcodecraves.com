@@ -1,0 +1,35 @@
+# Put Your Rails App on a Diet #
+# Speeding up Deployment #
+
+
+
+One of the nice things of working on a interpreted dynamic language
+like Ruby is the lack of compilation time.  Unfortunately, once you
+get a big codebase, it gets pretty slow to make a change, restart your
+server, and refresh your browser to test.
+
+For kwiqi, I removed the following from source control:
+
+before: 52M
+after: 21M
+
+rails 12M
+doc/* 13M
+
+
+## Rspec ##
+
+Rspec wastes a lot of space and really doesn't belong on the deployed
+instance. When I removed the plugin, my 'rake spec' stopped working
+because of weird load errors. I tried tracking down the load problems,
+but that just led me through a maze in the rspec-rails plugin.  The
+proper fix is to install [rspec-rails as a
+gem](http://wiki.github.com/dchelimsky/rspec/rails), and regenerate
+the spec_helper files via <code>script/generate rspec</code>.
+
+[install
+autotest](http://rails.aizatto.com/2007/11/19/autotest-ting-your-rails-application-with-visual-and-audio-feedback-using-growl-and-mpg321/)
+[install rb-cocoa via
+macports](http://rails.aizatto.com/2007/11/26/building-rubycocoa-with-ruby-macports-installation/)
+- works for me without a workaround
+[update ~/.autotest](http://rails.aizatto.com/2007/11/28/taming-the-autotest-beast-with-fsevents/)

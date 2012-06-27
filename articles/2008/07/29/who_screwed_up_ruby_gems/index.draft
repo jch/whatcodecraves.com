@@ -1,0 +1,25 @@
+# Who Screwed Up Ruby Gems #
+
+I come home very excited to do more tweaks and setup for my shiny new
+VPS at [SilverRack](http://www.silverrack.com).  Unfortunately, the
+first two things I encounter are both super annoying and super stupid.
+
+Numero uno: my screenrc isn't happy with the terminal.  It randomly
+goes beserk in fancier console apps like aptitude.
+
+Numero dos: freaking rubygems package was horrendously broken.
+Specifically, when it tries to load a YAML file for config options, it
+goes bonkers and files to allocate memory.  What worries me about this
+one is whether it's a gem problem, or a warning towards a bigger
+problem with how this Ubuntu's setup.
+
+My solution to uno was to use aptitude outside of screen.  I'm
+freaking too lazy to figure out terminal type to use in screenrc.
+
+My solution to dos was pretty ugly.  I installed checkinstall, grabbed
+the rubygems source package for 1.2.0 and created a deb.  This made me
+gag a little, but at least I can uninstall it later should the package
+ever get fixed.
+
+It may not be fair to place early blame yet, but I suspect there'll be
+a migration back to Debian "Good Stuff" in the near future.

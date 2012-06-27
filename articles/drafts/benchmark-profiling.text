@@ -1,0 +1,12 @@
+# Benchmarks and Profiling
+
+
+### Patching Rubys Garbage Collector
+
+In order to profile memory usage and GC data, ruby needs to be patched
+before ruby-prof can use it. Find the [appropriate
+patch](https://github.com/wycats/ruby-prof/tree/master/patches) for
+your version of ruby.
+
+* [Rack::Profile](https://github.com/ddollar/rack-profile)
+* [ruby-prof](https://github.com/wycats/ruby-prof)
