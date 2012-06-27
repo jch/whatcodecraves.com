@@ -137,6 +137,12 @@ class Post
     Date.strptime permalink.match(%r{^/\d{4}/\d{2}/\d{2}})[0], '/%Y/%m/%d'
   end
 
+  # @return [String] html excerpt of the post
+  def description
+    @parsed_html ||= Nokogiri::HTML(html)
+    @parsed_html.css('p:first').to_s.strip
+  end
+
   # @return [String] html of entire post
   def html
     @html ||= @renderer.render(@raw)

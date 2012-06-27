@@ -123,6 +123,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   haml
+  nokogiri
   rack-test
   rails (= 3.2.6)
   redcarpet

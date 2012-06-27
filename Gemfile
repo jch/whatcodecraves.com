@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 gem 'haml'
 gem 'redcarpet'
 
+gem 'nokogiri'
 gem 'anemone', require: false  # crawler to find dead links
 
 group :assets do

@@ -40,6 +40,10 @@ class PostTest < ActiveSupport::TestCase
     assert_equal Date.parse('2011-11-14'), @post.date
   end
 
+  test "description" do
+    assert_equal "<p>This is some content</p>", @post.description
+  end
+
   test "html" do
     assert @post.html =~ %r{<h1>This is the Title</h1>}
   end

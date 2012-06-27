@@ -1,6 +1,7 @@
 Blog::Application.routes.draw do
   match '/articles'    => 'posts#index', as: :posts
   match '/articles*id' => 'posts#show',  as: :post, format: false
+  match '/rss.xml'     => 'posts#index', as: :rss, format: 'xml'
 
   if Rails.env.test?
     # raises an error for testing 500's
