@@ -2,7 +2,10 @@
 <script type="text/javascript">
   var disqus_shortname  = 'whatcodecraves';
   var disqus_title      = '<%=j disqus.title %>';
-  var disqus_identifier = '<%=j disqus.permalink %>'
+  var disqus_identifier = '<%=j disqus.permalink %>';
+  <% if Rails.env.development? %>
+  var disqus_developer  = 1;
+  <% end %>
 
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
