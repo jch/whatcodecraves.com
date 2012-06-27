@@ -6,5 +6,6 @@ class HomeController < ApplicationController
 
   # 404 Not found page
   def not_found
+    response.status = 404
   end
 end

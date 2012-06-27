@@ -19,4 +19,9 @@ class PostsController < ApplicationController
       render nothing: true, status: 404
     end
   end
+
+  # Raises an exception for testing 500's in test environment
+  def error
+    raise "something went wrong"
+  end
 end

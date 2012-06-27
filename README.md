@@ -68,5 +68,4 @@ rake deploy:sitemap  # generate a sitemap
 * helpers for linking to other articles
 * might be better as a gem that allows overrides
 * home#styleguide
-* 400, 500 error pages
 * airbrake
