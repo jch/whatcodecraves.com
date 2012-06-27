@@ -2,14 +2,16 @@ require 'util'
 
 namespace :util do
   # Start webrick app server in a new thread. Server is killed after
-  # the given block is
+  # the given block is evaluated. Access log is disabled, and error
+  # messages are redirected to stdout.
   #
   # @param [Block] blk yielded server after start
   def start_server(&blk)
     thread = Thread.new {
       options = {
-        Port: 8989 + rand(500),
-        AccessLog: []  # STFU webrick
+        Port:      8989 + rand(500),
+        AccessLog: [],  # STFU webrick
+        Logger:    Logger.new(STDOUT).tap {|l| l.level = Logger::WARN}
       }
 
       Rack::Handler::WEBrick.run(Blog::Application, options) do |server|

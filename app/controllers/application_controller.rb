@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  rescue_from Exception do |e|
-    render template: 'home/error', status: 500
+  if !Rails.env.development?
+    rescue_from Exception do |e|
+      render template: 'home/error', status: 500
+    end
   end
 end
