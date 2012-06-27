@@ -1,6 +1,6 @@
 # whatcodecraves.com
 
-[![Build Status](https://secure.travis-ci.org/jch/whatcodecraves.com.png)](http://travis-ci.org/jch/whatcodecraves.com)[![Dependency Status](https://gemnasium.com/jch/whatcodecraves.com.png)](https://gemnasium.com/jch/whatcodecraves.com)
+[![Build Status](https://secure.travis-ci.org/jch/whatcodecraves.com.png)](http://travis-ci.org/jch/whatcodecraves.com)
 
 This is the content and Rails app that serves [whatcodecraves.com](http://whatcodecraves.com).
 Articles are written in [markdown](http://daringfireball.net/projects/markdown/)
@@ -8,7 +8,7 @@ and stored in the `articles` folder.
 
 ## Overview
 
-An article is a folder with a markdown document and any associated assets.
+An article is a folder with a markdown document named `index.text`.
 When an article is requested, it is rendered as html with the layout, and
 cached. Cache expiration is based on file modification timestamps.
 
@@ -63,6 +63,7 @@ rake deploy:sitemap  # generate a sitemap
 * migrate over disqus threads
 * rss
 * caching, cascade store
+* heroku staging
 * deploy tasks
 * helpers for linking to other articles
 * might be better as a gem that allows overrides
