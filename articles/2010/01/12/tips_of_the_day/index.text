@@ -18,7 +18,7 @@ Restore:
 
 ## Python Twitter OAuth ##
 
-[Download sample code](./python_twitter_oauth_sample.zip)
+[Download sample code](/files/python_twitter_oauth_sample.zip)
 
 [Grab oauth
 library](http://oauth.googlecode.com/svn/code/python/oauth/oauth.py),

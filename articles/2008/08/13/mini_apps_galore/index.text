@@ -8,8 +8,8 @@ promise.
 
 ## Hoptoad ##
 
-<a href="./hoptoadapp.png">
-   <img src="./hoptoadapp-thumb.png" alt="hoptoad main page with a listing of unresolved exceptions from my application" />
+<a href="/images/hoptoadapp.png">
+   <img src="/images/hoptoadapp-thumb.png" alt="hoptoad main page with a listing of unresolved exceptions from my application" />
 </a>
 
 Think of Hoptoad as a beautiful and functional wrapper around
@@ -28,8 +28,8 @@ site.
 
 ## PingMyMap ##
 
-<a href="./pingmymap.png">
-  <img src="./pingmymap-thumb.png" alt="listing of what sites pingmymap sent my sitemap to" />
+<a href="/images/pingmymap.png">
+  <img src="/images/pingmymap-thumb.png" alt="listing of what sites pingmymap sent my sitemap to" />
 </a>
 
 I came across PingMyMap when I was cleaning up my sitemap generator.
@@ -48,8 +48,8 @@ not in submitting your sitemap to those search engines.
 
 ## Disqus ##
 
-<a href="./disqus.png">
-  <img src="./disqus-thumb.png" alt="disqus showing list of comments for this blog article" />
+<a href="/images/disqus.png">
+  <img src="/images/disqus-thumb.png" alt="disqus showing list of comments for this blog article" />
 </a>
 
 To play with Disqus, simply post a comment to this blog article :).

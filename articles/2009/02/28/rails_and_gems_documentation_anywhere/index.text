@@ -23,7 +23,7 @@ directories in the commands appropriately.
 
 First of all, let's generate the documentation for all of your
 gems. If you're more accustomed to the layout of Rails documentation,
-then install [Jamis's rdoc template](./rdoc_template.rb).
+then install [Jamis's rdoc template](/files/rdoc_template.rb).
 
     # this step is optional
     cd /opt/local/lib/ruby/1.8/rdoc/generators/template/html
