@@ -1,0 +1,18 @@
+- content_for :header do
+  #intro
+    .content
+      %p
+        I'm Jerry. I love making stuff for the web and
+        <a href='https://github.com/jch'>sharing it</a>.
+      %p
+        Offline, I'll never refuse a cold beer, delicious food, or
+        laid-back company. I also have an unhealthy
+        <a href='http://rockyroadblog.com'/>obsession with cars</a>.
+
+      .social
+        %a.email(href='mailto:jollyjerry@gmail.com')
+        %a.github(href='https://github.com/jch')
+        %a.twitter(href='http://twitter.com/whatcodecraves')
+        %a.rss(href='http://feeds.feedburner.com/whatcodecraves')
+
+= render template: 'layouts/application'

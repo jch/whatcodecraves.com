@@ -1,44 +1,27 @@
-#intro
-  .content
-    %p
-      I'm Jerry. I love making stuff for the web and
-      <a href='https://github.com/jch'>sharing it</a>.
-    %p
-      Offline, I'll never refuse a cold beer, delicious food, or
-      laid-back company. I also have an unhealthy
-      <a href='http://rockyroadblog.com'/>obsession with cars</a>.
+%h2 Writing
 
-    .social
-      %a.email(href='mailto:jollyjerry@gmail.com')
-      %a.github(href='https://github.com/jch')
-      %a.twitter(href='http://twitter.com/whatcodecraves')
-      %a.rss(href='http://feeds.feedburner.com/whatcodecraves')
-
-#main
-  %h2 Writing
-
-  %ul.posts
-    - @posts.each do |post|
-      %li
-        = link_to post.title, post_path(post.permalink)
-
+%ul.posts
+  - @posts.each do |post|
     %li
-      = link_to "Archived Posts", posts_path
+      = link_to post.title, post_path(post.permalink)
 
-  %h2 Projects
+  %li
+    = link_to "Archived Posts", posts_path
 
-  %p Here's a sampling of projects I've started or worked on.
+%h2 Projects
 
-  %ul.posts
-    %li
-      = link_to 'grape', 'https://github.com/intridea/grape'
-      \- An opinionated micro-framework for creating REST-like APIs in Ruby
-    %li
-      = link_to 'rack-stream', 'https://github.com/intridea/rack-stream'
-      \- Rack middleware for building multi-protocol streaming endpoints
-    %li
-      = link_to 'em-irc', 'https://github.com/jch/em-irc'
-      \- Ruby EventMachine IRC client
-    %li
-      = link_to 'faraday', 'https://github.com/technoweenie/faraday'
-      \- multi-adapter Ruby HTTP client with middleware support
+%p Here's a sampling of projects I've started or worked on.
+
+%ul.posts
+  %li
+    = link_to 'grape', 'https://github.com/intridea/grape'
+    \- An opinionated micro-framework for creating REST-like APIs in Ruby
+  %li
+    = link_to 'rack-stream', 'https://github.com/intridea/rack-stream'
+    \- Rack middleware for building multi-protocol streaming endpoints
+  %li
+    = link_to 'em-irc', 'https://github.com/jch/em-irc'
+    \- Ruby EventMachine IRC client
+  %li
+    = link_to 'faraday', 'https://github.com/technoweenie/faraday'
+    \- multi-adapter Ruby HTTP client with middleware support

@@ -7,7 +7,10 @@
 
   %body.container-fluid
     #wcc.full-width
-      = yield
+      = content_for?(:header) ? yield(:header) : render('layouts/header')
+
+      #main
+        = yield
 
       #footer
         %p Copyright Jerry Cheung 2007 - #{Time.now.year}

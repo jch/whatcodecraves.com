@@ -1,8 +1,4 @@
-#header
-  = link_to 'whatcodecraves.com', root_path
+.post
+  = raw @post.html
 
-#main
-  .post
-    =raw @post.html
-
-  = render partial: 'layouts/disqus', object: @post
+= render partial: 'layouts/disqus', object: @post

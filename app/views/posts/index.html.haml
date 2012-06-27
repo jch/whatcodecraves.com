@@ -1,6 +1,5 @@
-#main
-  - @posts.each do |year, list|
-    %h2= year
-    %ul.posts
-      - list.each do |post|
-        %li= link_to post.title, post_path(post.permalink)
+- @posts.each do |year, list|
+  %h2= year
+  %ul.posts
+    - list.each do |post|
+      %li= link_to post.title, post_path(post.permalink)
