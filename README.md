@@ -61,8 +61,7 @@ rake deploy:sitemap  # generate a sitemap
 
 * images
 * migrate over disqus threads
-* bad code block indentation
-* syntax highlighting
+* code overflow scroll
 * caching, cascade store
 * heroku staging
 * deploy tasks
@@ -70,3 +69,4 @@ rake deploy:sitemap  # generate a sitemap
 * might be better as a gem that allows overrides
 * home#styleguide
 * airbrake
+* server-side syntax highlighting - done clientside w/ js right now

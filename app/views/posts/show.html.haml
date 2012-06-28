@@ -1,4 +1,7 @@
 .post
   = raw @post.html
 
+= javascript_include_tag 'highlight'
+:javascript
+  hljs.initHighlightingOnLoad();
 = render partial: 'layouts/disqus', object: @post

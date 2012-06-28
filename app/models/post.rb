@@ -123,7 +123,10 @@ class Post
   def initialize(permalink, raw)
     @permalink = permalink
     @raw       = raw
-    @renderer  = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    @renderer  = Redcarpet::Markdown.new(Redcarpet::Render::XHTML, {
+      no_intra_emphasis: true,
+      fenced_code_blocks: true
+    })
   end
 
   # @return [String] title of post, first h1 line
