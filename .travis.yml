@@ -1,5 +1,5 @@
 bundler_args:
-  --without development debug assets
+  --without development debug
 
 language: ruby
 
