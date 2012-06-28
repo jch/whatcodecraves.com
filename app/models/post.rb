@@ -40,10 +40,12 @@ class Post
     # @param [Pathname, String] path
     # @return [Post] nil if not found
     def from_path(path)
-      path = Pathname.new(path)
+      path = Pathname.new(path).expand_path
       return nil unless path.directory?
-      content = article_content(path)
-      content ? Post.new(article_permalink(path), content) : nil
+
+      permalink = article_permalink(path)
+      content   = article_content(path)
+      content ? Post.new(permalink, content) : nil
     end
 
     # Initialize a Post from a given permalink
@@ -64,9 +66,10 @@ class Post
     def article_permalink(path)
       path.to_s.
         gsub(root_path.to_s, '').   # relative path
-        gsub('_', '-').             # dasherize
+        gsub(/[_,!@#\$^*?]/, '-').  # dasherize
         gsub(/index\.html$/, '').   # remove trailing index.html
-        gsub(/\/$/, '')             # remove trailing /
+        gsub(/\/$/, '').            # remove trailing /
+        downcase
     end
 
     # Normalizes directory names in `root_path` to find

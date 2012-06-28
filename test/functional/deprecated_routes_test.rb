@@ -37,4 +37,10 @@ class DeprecatedRoutesTest < ActiveSupport::TestCase
     assert_equal 301, last_response.status
     assert_equal '/articles/2011/11/14/title', last_response.headers['Location']
   end
+
+  test "should 301 punctuation" do
+    get '/articles/2011/11/14/PROJECT_README,Y_U_NO_HAVE?'
+    assert_equal 301, last_response.status
+    assert_equal '/articles/2011/11/14/project-readme-y-u-no-have', last_response.headers['Location']
+  end
 end

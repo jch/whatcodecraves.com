@@ -61,6 +61,8 @@ rake deploy:sitemap  # generate a sitemap
 
 * images
 * migrate over disqus threads
+* bad code block indentation
+* syntax highlighting
 * caching, cascade store
 * heroku staging
 * deploy tasks
