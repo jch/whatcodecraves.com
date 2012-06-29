@@ -22,6 +22,10 @@ class Post
       @root_path ||= Pathname.new(@root_path.expand_path)
     end
 
+    def last_modified
+      root_path.atime
+    end
+
     # @param [Integer] count number of recent posts to return
     # @return [Array] count most recent posts
     def recent(count = 6)
