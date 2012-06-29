@@ -62,7 +62,6 @@ rake deploy:sitemap  # generate a sitemap
 ## TODO
 
 * images
-* import intridea posts
 * import opperator posts
 * migrate over disqus threads
 * social buttons

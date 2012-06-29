@@ -3,11 +3,7 @@ require 'test_helper'
 class PostTest < ActiveSupport::TestCase
   def setup
     stub_posts!
-    @post = Post.from_permalink('/2011/11/14/this-is-the-title')
-  end
-
-  test ".from_permalink" do
-    assert_not_nil @post
+    @post = Post.new('/2011/11/14/this-is-the-title')
   end
 
   test ".all" do
@@ -21,6 +17,10 @@ class PostTest < ActiveSupport::TestCase
     assert_equal 1, recent.size
     assert recent.all? {|e| e.kind_of? Post}, "results should be posts"
     assert_equal '/2012/11/14/another-post', recent.first.permalink
+  end
+
+  test "exists?" do
+    assert @post.exists?
   end
 
   test "permalink" do
@@ -49,8 +49,8 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "<=>" do
-    assert Post.new('/2011/11/14/foo', '') < Post.new('/2012/11/14/foo', '')
-    assert_equal Post.new('/2011/11/14/foo', ''), Post.new('/2011/11/14/foo', '')
-    assert Post.new('/2012/11/14/foo', '') > Post.new('/2011/11/14/foo', '')
+    assert Post.new('/2011/11/14/this-is-the-title') < Post.new('/2012/11/14/another-post')
+    assert_equal Post.new('/2011/11/14/this-is-the-title'), Post.new('/2011/11/14/this-is-the-title')
+    assert Post.new('/2012/11/14/another-post') > Post.new('/2011/11/14/this-is-the-title')
   end
 end

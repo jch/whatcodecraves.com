@@ -31,80 +31,8 @@ class Post
     # @return [Array] posts found under `root_path`
     def all
       root_path.search('index.text').sort {|a,b| b <=> a}.map do |path|
-        from_path(path.dirname)
+        new(path.dirname)
       end
-    end
-
-    # Initialize a Post from a pathname
-    #
-    # @param [Pathname, String] path
-    # @return [Post] nil if not found
-    def from_path(path)
-      path = Pathname.new(path).expand_path
-      return nil unless path.directory?
-
-      permalink = article_permalink(path)
-      content   = article_content(path)
-      content ? Post.new(permalink, content) : nil
-    end
-
-    # Initialize a Post from a given permalink
-    # Permalinks are in the format: /YYYY/MM/DD/dasherized-title
-    #
-    # @param [String] permalink
-    # @return [Post] nil if not found
-    def from_permalink(permalink)
-      dir     = article_dir(permalink)
-      content = article_content(dir) if dir
-      content ? Post.new(permalink, content) : nil
-    end
-
-    # Normalize a directory path to a permalink string
-    #
-    # @param [Pathname, String] path
-    # @return [String] permalink
-    def article_permalink(path)
-      path.to_s.
-        gsub(root_path.to_s, '').   # relative path
-        gsub(/[_,!@#\$^*?]/, '-').  # dasherize
-        gsub(/index\.html$/, '').   # remove trailing index.html
-        gsub(/\/$/, '').            # remove trailing /
-        downcase
-    end
-
-    # Normalizes directory names in `root_path` to find
-    # a matching directory for the given permalink
-    #
-    # @param [String] permalink
-    #
-    # @return [Pathname] directory that holds permalink, nil if not found
-    def article_dir(permalink)
-      # concatenate relative path to root_path
-      dir, base  = (root_path + permalink.gsub(/^\//, '')).split
-      normalized = base.to_s.upcase
-
-      match = nil
-      dir.find do |path|
-        if path.basename.to_s.dasherize.upcase == normalized
-          match = path
-          Find.prune  # stop find
-        end
-      end
-      match
-    rescue Errno::ENOENT => e
-      nil
-    end
-
-    # Raw file contents of an index file if it's found in `dir`
-    #
-    # @param [Pathname] dir directory to look for file
-    # @return [String] index file contents. nil if not found
-    def article_content(dir)
-      dir.children.detect {|path|
-        path.basename.to_s =~ /index.text/i
-      }.read
-    rescue Errno::ENOENT => e
-      nil
     end
   end
 
@@ -114,24 +42,59 @@ class Post
   # @return [String] relative canonical url
   attr_reader :permalink
 
-  # @!attribute [r] raw
-  # @return [String] raw content of markdown document
-  attr_reader :raw
-
-  # @param [String] permalink canonical relative url for post
-  # @param [String] raw markdown content
-  def initialize(permalink, raw)
-    @permalink = permalink
-    @raw       = raw
+  # @param [String] uri file path or uri path. e.g.
+  #   /YYYY/MM/DD/dasherized-title
+  #   /home/jch/articles/2011/11/14/articles_path/index.html
+  def initialize(uri)
+    @permalink = normalized_permalink(uri)
     @renderer  = Redcarpet::Markdown.new(Redcarpet::Render::XHTML, {
       no_intra_emphasis: true,
       fenced_code_blocks: true
     })
   end
 
+  # Raw file contents of an index file
+  #
+  # @param [Pathname] dir directory to look for file
+  # @return [String] index file contents. nil if not found
+  def raw
+    return nil unless directory
+    @raw ||= directory.children.detect {|path|
+      path.basename.to_s =~ /index.text/i
+    }.read
+  rescue Errno::ENOENT => e
+    nil
+  end
+
+  # Normalizes directory names in `root_path` to find
+  # a matching directory for the given permalink
+  #
+  # @return [Pathname] directory that holds permalink, nil if not found
+  def directory
+    # concatenate relative path to root_path
+    dir, base  = (self.class.root_path + permalink.gsub(/^\//, '')).split
+    normalized = base.to_s.upcase
+
+    match = nil
+    dir.find do |path|
+      if path.basename.to_s.dasherize.upcase == normalized
+        match = path
+        Find.prune  # stop find
+      end
+    end
+    @directory ||= match
+  rescue Errno::ENOENT => e
+    nil
+  end
+
+  # @return [Boolean] whether post directory exists with content
+  def exists?
+    !raw.nil?
+  end
+
   # @return [String] title of post, first h1 line
   def title
-    @raw.split("\n").detect {|line|
+    raw.split("\n").detect {|line|
       line =~ /\s/
     }.strip.gsub(/^#\s*/, '').gsub(/\s*#/, '')
   rescue => e
@@ -143,6 +106,12 @@ class Post
     Date.strptime permalink.match(%r{^/\d{4}/\d{2}/\d{2}})[0], '/%Y/%m/%d'
   end
 
+
+  # @return [Datetime] last modified date
+  def updated_at
+    directory.atime
+  end
+
   # @return [String] html excerpt of the post
   def description
     @parsed_html ||= Nokogiri::HTML(html)
@@ -151,11 +120,26 @@ class Post
 
   # @return [String] html of entire post
   def html
-    @html ||= @renderer.render(@raw)
+    @html ||= @renderer.render(raw)
   end
 
   # Compares posts by permalink
   def <=>(post)
     permalink <=> post.permalink
+  end
+
+  protected
+
+  # Normalize a directory path to a permalink string
+  #
+  # @param [Pathname, String] path
+  # @return [String] permalink
+  def normalized_permalink(path)
+    path.to_s.
+      gsub(self.class.root_path.to_s, '').   # relative path
+      gsub(/[_,!@#\$^*?]/, '-').  # dasherize
+      gsub(/index\.html$/, '').   # remove trailing index.html
+      gsub(/\/$/, '').            # remove trailing /
+      downcase
   end
 end

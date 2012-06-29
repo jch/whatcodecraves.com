@@ -38,7 +38,8 @@ class PostsControllerTest < ActionController::TestCase
 
   test "show" do
     get :show, id: '/2011/11/14/this-is-the-title'
-    assert_response :success
+    assert_response 200
+    assert_equal @response.headers['Last-Modified'], assigns(:post).updated_at.in_time_zone.httpdate
     assert_not_nil assigns(:post)
   end
 

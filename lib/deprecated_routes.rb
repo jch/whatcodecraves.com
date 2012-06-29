@@ -22,7 +22,7 @@ class DeprecatedRoutes
 
   def normalized_path(path)
     if path.index('/articles') == 0
-      Post.article_permalink(path)
+      Post.new(path).permalink
     else
       path
     end

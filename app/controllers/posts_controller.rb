@@ -18,7 +18,10 @@ class PostsController < ApplicationController
   #
   # @param [String] :id canonical post permalink
   def show
-    unless @post = Post.from_permalink(params[:id])
+    @post = Post.new(params[:id])
+    if @post.exists?
+      fresh_when last_modified: @post.updated_at, public: true
+    else
       render nothing: true, status: 404
     end
   end

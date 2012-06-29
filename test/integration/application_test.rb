@@ -8,11 +8,13 @@ class ApplicationTest < ActionDispatch::IntegrationTest
     assert_match /this link doesn't exist/, @response.body
   end
 
-  test "500" do
-    get '/error', remote_addr: '12.12.12'
-    assert_response 500
-    assert_match /something went wrong/, @response.body
-  end
+  # Need a separate integration environment that uses production mode
+  # otherwise all other tests exceptions are caught
+  # test "500" do
+  #   get '/error', remote_addr: '12.12.12'
+  #   assert_response 500
+  #   assert_match /something went wrong/, @response.body
+  # end
 
   test "serves static assets" do
     get '/images/me.jpeg'
