@@ -28,7 +28,7 @@ gives you a list of spec files to run alongside your lib spec
 
 'e' for execute, and 'p' means wrap the code in a loop and assign  each line of STDIN to `$_`. We're piping in STDIN from the `ls` command.
 
-    $_=`rspec #{$_} spec/lib/my_lib_spec.rb
+    $_=`rspec #{$_} spec/lib/my_lib_spec.rb`
 
 The 'p' flag also prints out the value of `$_` at the end of each loop. So we assign the output of running rspec with the 2 files (one from ls alongside `my_lib_spec`).
 
