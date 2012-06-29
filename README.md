@@ -51,6 +51,8 @@ rails server
 
 ## Deployment
 
+Staging [lives on heroku](http://whatcodecraves.herokuapp.com).
+
 ```sh
 rake deploy          # runs everything under `deploy`
 rake deploy:warmup   # warm up Rack::Cache by crawling the site
@@ -60,10 +62,13 @@ rake deploy:sitemap  # generate a sitemap
 ## TODO
 
 * images
+* import intridea posts
+* import opperator posts
 * migrate over disqus threads
+* social buttons
 * code overflow scroll
 * caching, cascade store
-* heroku staging
+* answer this question: http://stackoverflow.com/questions/5293361/on-ruby-on-rails-how-to-do-syntax-highlighting-using-markdown-rdiscount-blue
 * deploy tasks
 * helpers for linking to other articles
 * might be better as a gem that allows overrides
