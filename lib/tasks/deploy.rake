@@ -44,8 +44,9 @@ namespace :deploy do
   end
 
   task :config do
-    remote "rake deploy:config_remote"
-    remote "sudo cp config/apache.conf /etc/apache2/sites-enabled/whatcodecraves.com"
+    remote "rake deploy:config_remote",
+      "sudo cp config/apache.conf /etc/apache2/sites-enabled/whatcodecraves.com",
+      "sudo service apache2 reload"
   end
 
   task :config_remote do
