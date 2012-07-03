@@ -12,7 +12,7 @@ All cache store implementations inherit from an abstract store named [ActiveSupp
 
 ```ruby
 require 'activesupport'
-cache = ActiveSupport::Cache.lookup_cache(:memory_store)
+cache = ActiveSupport::Cache.lookup_store(:memory_store)
 cache.read('foo')
 => nil
 cache.write('foo', 'bar')
