@@ -19,10 +19,10 @@ class Sitemap
     @base_url = options[:base_url] || 'http://example.com'
     @compress = !!options[:compress]
     @maps     = Set.new
+    @link_set = generate
   end
 
   def fetch(path, options = {})
-    @link_set ||= generate
     @store.read(normalized_key(path))
   end
   alias_method :[], :fetch
@@ -33,6 +33,11 @@ class Sitemap
 
   def reset!
     @link_set = nil
+  end
+
+  # Ping search engines
+  def ping!
+    @link_set.ping_search_engines
   end
 
   def normalized_key(path)

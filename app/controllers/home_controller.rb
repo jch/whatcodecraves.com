@@ -30,6 +30,7 @@ class HomeController < ApplicationController
     })
 
     if sitemap
+      sitemap.ping!
       render xml: xml
     else
       head :missing
