@@ -63,17 +63,30 @@ rake deploy:warmup   # warm up Rack::Cache by crawling the site
 rake deploy:sitemap  # generate a sitemap
 ```
 
+Apache Passenger configuration on VPS:
+
+```
+# /etc/apache2/conf.d/passenger
+LoadModule passenger_module /usr/local/rvm/gems/ruby-1.9.2-p180/gems/passenger-3.0.13/ext/apache2/mod_passenger.so                                                                                     
+PassengerRoot /usr/local/rvm/gems/ruby-1.9.2-p180/gems/passenger-3.0.13
+PassengerRuby /usr/local/rvm/wrappers/ruby-1.9.2-p180/ruby
+```
+
+To reload:
+
+```sh
+sudo service apache2 restart
+```
+
 ## TODO
 
 * images
 * import opperator posts
-* migrate over disqus threads
+* heroku hosting if we use pinger to keep page speeds up?
 * social buttons
 * code overflow scroll
 * answer this question: http://stackoverflow.com/questions/5293361/on-ruby-on-rails-how-to-do-syntax-highlighting-using-markdown-rdiscount-blue
-* deploy tasks
 * helpers for linking to other articles
 * might be better as a gem that allows overrides
 * home#styleguide
-* airbrake
 * server-side syntax highlighting - done clientside w/ js right now
