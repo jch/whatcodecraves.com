@@ -56,6 +56,9 @@ class Sitemap
   # Ping search engines
   def ping!
     @link_set.ping_search_engines
+  rescue => e
+    Rails.logger.error(e)
+    Airbrake.notify(e)
   end
 
   def normalized_key(path)
