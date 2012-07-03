@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   if Rails.env.production?
     rescue_from Exception do |e|
+      Rails.logger.error(e)
+      (e.backtrace || []).each do |line|
+        Rails.logger.error(line)
+      end
+      notify_airbrake(e)
       render template: 'home/error', status: 500
     end
   end
