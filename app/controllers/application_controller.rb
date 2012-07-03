@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # @return [String] base url of request
   def base_url
-    URI.parse(request.url).tap {|u| u.path = ''}
+    URI.parse(request.url).tap {|u| u.path = ''}.to_s
   end
 end
