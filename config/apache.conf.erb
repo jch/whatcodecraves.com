@@ -1,5 +1,6 @@
-<VirtualHost *:80>
+<VirtualHost *:8080>
     ServerName whatcodecraves.com
+    ServerAlias www.whatcodecraves.com
     DocumentRoot <%= root + 'public' %>
     <Directory <%= root + 'public' %>>
         Allow from all
