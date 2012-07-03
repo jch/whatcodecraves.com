@@ -49,6 +49,10 @@ yard
 rails server
 ```
 
+## Documentation
+
+Reference documentation can be found at [http://rubydoc.info/github/jch/whatcodecraves.com](http://rubydoc.info/github/jch/whatcodecraves.com).
+
 ## Deployment
 
 Staging [lives on heroku](http://whatcodecraves.herokuapp.com).
