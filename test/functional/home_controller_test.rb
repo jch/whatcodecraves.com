@@ -20,4 +20,11 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal 'application/xml; charset=utf-8', @response.headers['Content-Type']
     assert_match @response.body, %r{/2008/05/03/kernel-designs</loc>}
   end
+
+  test "robots.txt" do
+    get :robots
+    assert_response :success
+    assert_equal 'text/plain; charset=utf-8', @response.headers['Content-Type']
+    assert_equal @response.body.strip, 'Sitemap: http://test.host/sitemap_index.xml.gz'
+  end
 end

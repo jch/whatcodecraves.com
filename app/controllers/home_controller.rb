@@ -12,9 +12,7 @@ class HomeController < ApplicationController
   def sitemap
     fresh_when last_modified: Post.last_modified, public: true
 
-    base_url = URI.parse(request.url).tap {|u| u.path = ''}
     links    = [posts_path, changefreq: 'daily', priority: 0.6, lastmod: Post.last_modified]
-
     Post.all.each do |post|
       links << [post.permalink, lastmod: post.updated_at, priority: 0.33]
     end
@@ -41,5 +39,12 @@ class HomeController < ApplicationController
   # 404 Not found page
   def not_found
     response.status = 404
+  end
+
+  def robots
+    robots = <<-ROBOTS
+Sitemap: #{URI.join(base_url, 'sitemap_index.xml.gz')}
+ROBOTS
+    render text: robots, content_type: 'text/plain'
   end
 end

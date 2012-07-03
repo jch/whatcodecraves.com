@@ -1,7 +1,6 @@
 require 'uri'
 
 # SitemapGenerator::Sitemap.search_engines
-# Sitemap: http://www.example.com/sitemap_index.xml.gz
 class Sitemap
   attr_accessor :store
 
