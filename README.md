@@ -67,7 +67,7 @@ Apache Passenger configuration on VPS:
 
 ```
 # /etc/apache2/conf.d/passenger
-LoadModule passenger_module /usr/local/rvm/gems/ruby-1.9.2-p180/gems/passenger-3.0.13/ext/apache2/mod_passenger.so                                                                                     
+LoadModule passenger_module /usr/local/rvm/gems/ruby-1.9.2-p180/gems/passenger-3.0.13/ext/apache2/mod_passenger.so
 PassengerRoot /usr/local/rvm/gems/ruby-1.9.2-p180/gems/passenger-3.0.13
 PassengerRuby /usr/local/rvm/wrappers/ruby-1.9.2-p180/ruby
 ```
