@@ -66,7 +66,6 @@ rake deploy:sitemap  # generate a sitemap
 * migrate over disqus threads
 * social buttons
 * code overflow scroll
-* caching, cascade store
 * answer this question: http://stackoverflow.com/questions/5293361/on-ruby-on-rails-how-to-do-syntax-highlighting-using-markdown-rdiscount-blue
 * deploy tasks
 * helpers for linking to other articles
