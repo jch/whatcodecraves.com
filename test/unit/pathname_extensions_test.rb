@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'pathname_extensions'
+require 'set'
 
 class PathnameExtensionsTest < ActiveSupport::TestCase
   def setup
@@ -16,7 +17,7 @@ class PathnameExtensionsTest < ActiveSupport::TestCase
   end
 
   test "search default returns all children excluding self" do
-    assert_equal @pathname.to_a, @pathname.search.to_a
+    assert_equal Set.new(@pathname.to_a), Set.new(@pathname.search.to_a)
   end
 
   test "search string" do
