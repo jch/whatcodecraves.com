@@ -12,7 +12,11 @@ class HomeController < ApplicationController
   def sitemap
     fresh_when last_modified: Post.last_modified, public: true
 
-    links    = [posts_path, changefreq: 'daily', priority: 0.6, lastmod: Post.last_modified]
+    links = [
+      [root_path,  changefreq: 'always', priority: 0.8, lastmod: Post.last_modified],
+      [posts_path, changefreq: 'daily', priority: 0.6, lastmod: Post.last_modified]
+    ]
+
     Post.all.each do |post|
       links << [post.permalink, lastmod: post.updated_at, priority: 0.33]
     end

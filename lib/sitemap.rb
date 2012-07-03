@@ -1,6 +1,24 @@
 require 'uri'
 
-# SitemapGenerator::Sitemap.search_engines
+# Wrapper object around SitemapGenerator. This class generates sitemaps
+# from a list of links and writes the xml into an ActiveSupport compatible
+# cache store.
+#
+# ## Example:
+#
+# ```ruby
+# # Generates and writes sitemap_index.xml.gz and other sitemaps
+# # to Rails.cache.
+# sitemap = Sitemap.new({
+#   base_url: base_url,
+#   compress: false,
+#   store:    Rails.cache,
+#   links:    ['/path1', 'path2']
+# })
+#
+# sitemap.fetch('sitemap_index.xml.gz')
+# sitemap.fetch('sitemap1.xml.gz')
+# ```
 class Sitemap
   attr_accessor :store
 
