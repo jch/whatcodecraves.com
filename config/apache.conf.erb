@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerName whatcodecraves.com
+    DocumentRoot <%= root + 'public' %>
+    <Directory <%= root + 'public' %>>
+        Allow from all
+        Options -MultiViews
+    </Directory>
+</VirtualHost>
