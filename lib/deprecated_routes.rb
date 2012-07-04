@@ -13,10 +13,13 @@ class DeprecatedRoutes
   end
 
   def call(env)
-    if env['PATH_INFO'] == (path = normalized_path(env['PATH_INFO']))
+    request    = Rack::Request.new(env)
+    normalized = normalized_path(request.path)
+    if request.path == normalized
       @app.call(env)
     else
-      [301, {'Location' => path}, []]
+      uri = URI.parse(request.url).tap {|u| u.path = normalized}
+      [301, {'Location' => uri.to_s}, []]
     end
   end
 
