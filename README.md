@@ -80,9 +80,6 @@ sudo service apache2 restart
 
 ## TODO
 
-* images
-* import opperator posts
-* heroku hosting if we use pinger to keep page speeds up?
 * social buttons
 * code overflow scroll
 * answer this question: http://stackoverflow.com/questions/5293361/on-ruby-on-rails-how-to-do-syntax-highlighting-using-markdown-rdiscount-blue
