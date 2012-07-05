@@ -110,7 +110,6 @@ class Post
     Date.strptime permalink.match(%r{^/\d{4}/\d{2}/\d{2}})[0], '/%Y/%m/%d'
   end
 
-
   # @return [Datetime] last modified date
   def updated_at
     directory.atime
@@ -119,7 +118,7 @@ class Post
   # @return [String] html excerpt of the post
   def description
     @parsed_html ||= Nokogiri::HTML(html)
-    @parsed_html.css('p:first').to_s.strip
+    @parsed_html.css('body').children.slice(1..-1).map(&:to_s).map(&:strip).join('')
   end
 
   # @return [String] html of entire post

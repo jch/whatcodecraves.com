@@ -19,7 +19,7 @@ class PostsControllerTest < ActionController::TestCase
     posts = doc.css('item')
     assert_equal 2, posts.size
     assert_equal 'This is the Title', posts.last.css('title').text
-    assert_equal '<p>This is some content</p>', posts.last.css('description').text.strip
+    assert_equal '<p>This is some content</p><p>This is some more content</p>', posts.last.css('description').text.strip
     assert_equal 'http://test.host/articles/2011/11/14/this-is-the-title', posts.last.css('link').text
   end
 

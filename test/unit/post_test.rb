@@ -41,7 +41,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "description" do
-    assert_equal "<p>This is some content</p>", @post.description
+    assert_equal "<p>This is some content</p><p>This is some more content</p>", @post.description
   end
 
   test "html" do
