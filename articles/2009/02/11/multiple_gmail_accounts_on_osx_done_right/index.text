@@ -23,7 +23,7 @@ icons](http://chris.ivarson.name/goodies/).
 
 When you fire up Fluid, fill in the following information:
 
-<p><img src="./fluid-setup.png" alt="fluid setup window" /></p>
+<p><img src="/images/fluid-setup.png" alt="fluid setup window" /></p>
 
 Choose one of the icons you just downloaded.  I use orange for
 personal mail, and Coupa blue for work email. When you finish, launch
@@ -32,7 +32,7 @@ the apps, login to Gmail, and viola!
 Here's what my dock looks like. Note how there's an indicator for the
 number of unread messages in my mailbox. Sweet!
 
-<p><img src="./fluid-dock.png" alt="fluid gmail icons in my dock" /></p>
+<p><img src="/images/fluid-dock.png" alt="fluid gmail icons in my dock" /></p>
 
 *Update*: Since I told people about my solution, I heard about two
 interesting alternatives.  [Postbox Inc](http://www.postbox-inc.com/)

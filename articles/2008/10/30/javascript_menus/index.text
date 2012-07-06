@@ -12,7 +12,7 @@ Before I bore you with all the reasoning and technical mumbo-jumbo,
 this is what the final menu looks like.  All the sexiness is provided
 by the mad skills of Kyle and David.
 
-<img src="./coupa_menu.png" alt="sexy image of menu with tabs and subtabs" />
+<img src="/images/coupa_menu.png" alt="sexy image of menu with tabs and subtabs" />
 
 Our application deals with several different document types.  There
 are some common workflows that these documents follow.  The most basic
