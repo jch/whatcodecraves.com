@@ -48,6 +48,13 @@ class PostTest < ActiveSupport::TestCase
     assert @post.html =~ %r{<h1>This is the Title</h1>}
   end
 
+  test "updated_at" do
+    t = @post.updated_at
+    assert_equal @post.updated_at, t
+    `touch #{@post.directory.expand_path}`
+    assert @post.updated_at > t
+  end
+
   test "<=>" do
     assert Post.new('/2011/11/14/this-is-the-title') < Post.new('/2012/11/14/another-post')
     assert_equal Post.new('/2011/11/14/this-is-the-title'), Post.new('/2011/11/14/this-is-the-title')

@@ -112,7 +112,7 @@ class Post
 
   # @return [Datetime] last modified date
   def updated_at
-    directory.atime
+    directory.mtime
   end
 
   # @return [String] html excerpt of the post
