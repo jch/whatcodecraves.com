@@ -27,6 +27,7 @@ namespace :util do
   desc "Crawl the entire site for dead links"
   task crawl: :environment do
     require 'anemone'
+    require 'anemone_extensions'
     start_server do |server|
       root = "http://127.0.0.1:#{server.config[:Port]}/"
       Anemone.crawl(root) do |spider|

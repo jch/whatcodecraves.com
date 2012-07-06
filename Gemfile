@@ -5,7 +5,7 @@ gem 'haml'
 gem 'redcarpet'
 
 gem 'nokogiri'
-gem 'anemone', require: false  # crawler to find dead links
+gem 'anemone', require: false
 gem 'sitemap_generator'
 gem 'airbrake'
 
