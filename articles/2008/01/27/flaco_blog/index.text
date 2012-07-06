@@ -5,9 +5,6 @@ various blog systems.  To date, I've tried a wide cross section of
 them and found them all to be inadequate.  Arthur's proposed solution
 was to write his own.  I shied away from that notion until a few days
 ago.  Then I finally caved and started thinking about doing my own.
-(**Update**: See the [project
-page](http://whatcodecraves.com/projects/flacoblog) for current
-details.  I left this post here for nostalgia reasons)
 
 ## Requirements ##
 

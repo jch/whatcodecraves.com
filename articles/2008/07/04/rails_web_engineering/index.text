@@ -33,7 +33,10 @@ about it.  It really *really* helps out with testing.
 
 ## Getting All Tables ##
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-  connection = ActiveRecord::Base.connection
-  options[:tables] ||= connection.tables.reject { |t| %w(schema_info
-  sessions).include?(t) }
+```ruby
+ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+connection = ActiveRecord::Base.connection
+
+options[:tables] ||= connection.tables.reject { |t| %w(schema_info
+sessions).include?(t) }
+```

@@ -58,14 +58,14 @@ saw with the application submission was laughably bad.
 
 * The password they ask for doesn't allow '@'.  Why is this?
 
-<img src="no-symbol-password.png" />
+<img src="/images/no-symbol-password.png" />
 
 * The password I enter is stored in PLAINTEXT.  Thankfully, I've
   learned to set a initial dummy password to ensure a site at least
   hashes my password before I submit a legit password.  superpassword
   for the win!
 
-<img src="plaintext-password.png" />
+<img src="/images/plaintext-password.png" />
 
 ## The Pros ##
 

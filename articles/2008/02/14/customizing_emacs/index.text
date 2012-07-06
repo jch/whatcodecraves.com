@@ -39,19 +39,19 @@ and also for inserting useful snippets of text (which perl, date)
 
 Another amazing feature is rectangular editing:
 
-   C-x r t
-   C-x r d
+    C-x r t
+    C-x r d
 
-These two commands mean inserT and Delete respectively.  The two
+These two commands mean insert and delete respectively.  The two
 complementary use cases are to select the beginning of several lines
 and use 't' to insert a comment character and then use 'd' to delete
-them when you're done.  Sure you could use M-x comment-region, but
+them when you're done.  Sure you could use `M-x comment-region`, but
 sometimes that doesn't act quite right, and these two are better
 built-in to my muscle memory.
 
-Another super lazy trick is M-/.  This tries to complete the current
+Another super lazy trick is `M-/`.  This tries to complete the current
 word you're typing with words that are in other buffers.  If it's not
-the right one, just M-/ to cycle to the next one.
+the right one, just `M-/` to cycle to the next one.
 
 ## Look and Feel ##
 
