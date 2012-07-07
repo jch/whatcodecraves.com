@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'haml'
 gem 'redcarpet'
+gem 'rack-rewrite'
 
 gem 'nokogiri'
 gem 'anemone', require: false
