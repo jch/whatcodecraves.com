@@ -1,7 +1,14 @@
 .post
-  = raw @post.html
+  %h1= @post.title
+  = link_to 'Vote on HN', "http://news.ycombinator.com/submit", class: 'hn-share-button'
+  = link_to 'Tweet', "https://twitter.com/share", class: 'twitter-share-button', 'data_via' => 'whatcodecraves'
+  .g-plus(data-action="share" data-annontation="bubble")
+  = raw @post.description
 
-= javascript_include_tag 'highlight'
+= javascript_include_tag 'post'
+
 :javascript
   hljs.initHighlightingOnLoad();
+
+= render partial: 'layouts/sharing.js'
 = render partial: 'layouts/disqus', object: @post
