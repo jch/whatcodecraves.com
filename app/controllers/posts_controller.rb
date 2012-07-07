@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   #
   # @return [Hash] posts keyed by month and year. e.g. 'June 2012'
   def index
+    @title = "Archived Posts"
     # TODO: the ordering of the hash is implicit here
     @posts = Post.all.inject({}) do |memo, post|
       key = post.date.strftime('%B %Y')
@@ -19,7 +20,9 @@ class PostsController < ApplicationController
   # @param [String] :id canonical post permalink
   def show
     @post = Post.new(params[:id])
+
     if @post.exists?
+      @title = @post.title
       fresh_when last_modified: @post.updated_at, public: true
     else
       render nothing: true, status: 404

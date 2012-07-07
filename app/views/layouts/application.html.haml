@@ -2,8 +2,12 @@
 %html
   %head
     %meta(content="width=device-width, initial-scale=1.0" name="viewport")
+    %title
+      = @title || "Jerry Cheung's Tech Portfolio"
+
     = stylesheet_link_tag "application", :media => "all"
     = render partial: 'layouts/analytics', formats: [:js]
+    = yield(:head) if content_for?(:head)
 
   %body.container-fluid
     #wcc.full-width

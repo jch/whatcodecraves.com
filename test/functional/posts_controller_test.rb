@@ -10,6 +10,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:posts)
     assert_equal ['November 2012', 'November 2011'], assigns(:posts).keys
+    assert_match %r{<title>\nArchived Posts\n</title>}, @response.body
   end
 
   test "index rss" do
@@ -41,6 +42,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_response 200
     assert_equal @response.headers['Last-Modified'], assigns(:post).updated_at.httpdate
     assert_not_nil assigns(:post)
+    assert_match %r{<title>\nThis is the Title\n</title>}, @response.body
   end
 
   test "show with periods in permalink" do

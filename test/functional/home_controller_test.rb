@@ -5,6 +5,7 @@ class HomeControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_equal @response.headers['Last-Modified'], Post.last_modified.httpdate
+    assert_match %r{<title>\nJerry Cheung's Tech Portfolio\n</title>}, @response.body
   end
 
   test "sitemap index" do
