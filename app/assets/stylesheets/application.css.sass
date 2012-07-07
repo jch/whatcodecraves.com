@@ -105,6 +105,11 @@ body
   padding-bottom: 3em
   min-height: 500px // fill footer to bottom w/out using fixed
 
+  #carbonads-container
+    margin-left: 2em
+    margin-bottom: 2em
+    float: right
+
   /* for listing posts or projects */
   ul.posts
     list-style: none
@@ -126,6 +131,11 @@ body
   .full-width
     margin-left: -20px
     margin-right: -20px
+
+@media screen and (max-width: 500px)
+  // hide ads when viewport is too narrow
+  #carbonads-container
+    display: none
 
 @media screen and (min-width: 650px)
   #intro

@@ -10,6 +10,7 @@
       = content_for?(:header) ? yield(:header) : render('layouts/header')
 
       #main
+        = render partial: 'layouts/carbon_ad'
         = yield
 
       #footer
