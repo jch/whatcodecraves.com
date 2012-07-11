@@ -80,10 +80,7 @@ sudo service apache2 restart
 
 ## TODO
 
-* social buttons
-* code overflow scroll
-* answer this question: http://stackoverflow.com/questions/5293361/on-ruby-on-rails-how-to-do-syntax-highlighting-using-markdown-rdiscount-blue
-* helpers for linking to other articles
-* might be better as a gem that allows overrides
-* home#styleguide
 * server-side syntax highlighting - done clientside w/ js right now
+* code overflow scroll
+* helpers for linking to other articles
+* gemify to separate code from content
