@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-2747647-1']);
-  _gaq.push(['_setSampleRate', '100']);
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
   _gaq.push(['_trackPageview']);
 
   (function() {
