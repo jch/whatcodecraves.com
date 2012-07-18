@@ -222,8 +222,7 @@ single fat blob of code.
 ## Composing Middleware
 
 Rack comes builtin with a utility object for composing middlewares and
-applications together called [Rack::Builder](http://m.onkey.org/ruby-on-rack-2
--the-builder). For example the following wraps the `ProfanityFilter`
+applications together called [Rack::Builder][]. For example the following wraps the `ProfanityFilter`
 middleware around the `MyApp` application:
 
 ```ruby
@@ -286,17 +285,16 @@ run lambda {|env|
 
 Because the environment hash is a plain old Ruby hash, you can decorate it
 with any functionality you want. Typically the convention is to use string
-keys and to namespace the key by the project name. For example, [OmniAuth]()
+keys and to namespace the key by the project name. For example, [OmniAuth][]
 is a Rack library that allows applications to plugin different authentication
 providers. When authentication completes, the relevant auth information is
 given in an `env['omniauth.auth']` hash. The values don't have to be Ruby
-primitive objects either. In [Rack::Stream](https://github.com/intridea/rack-
-stream), a library for building streaming Ruby webapps, `env['stream.app']` is
-a [Rack::Stream::App](https://github.com/intridea/rack-
-stream/blob/master/lib/rack/stream/app.rb) instance that has callable methods
-and features that can be used downstream. The contract of what's made
-available downstream is up to individual libraries, but the separate between
-each layer helps keep the components separate and well factored.
+primitive objects either. In [Rack::Stream][], a library for building
+streaming Ruby webapps, `env['stream.app']` is a [Rack::Stream::App][]
+instance that has callable methods and features that can be used downstream.
+The contract of what's made available downstream is up to individual
+libraries, but the separate between each layer helps keep the components
+separate and well factored.
 
 ### Rails on Rack
 
@@ -381,3 +379,7 @@ screencast](http://railscasts.com/episodes/151-rack-middleware).
 
 
 [Rack::Session::Cookie]: http://rack.rubyforge.org/doc/classes/Rack/Session/Cookie.html
+[Rack::Stream]: https://github.com/intridea/rack-stream
+[Rack::Stream::App]: https://github.com/intridea/rack-stream/blob/master/lib/rack/stream/app.rb
+[Rack::Builder]: http://m.onkey.org/ruby-on-rack-2-the-builder
+[OmniAuth]: https://github.com/intridea/omniauth
