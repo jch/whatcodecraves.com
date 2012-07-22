@@ -2,6 +2,8 @@ require 'test_helper'
 require 'util'
 
 class ApplicationTest < ActionDispatch::IntegrationTest
+  Blog::Application.load_tasks
+
   test "404" do
     get '/foo', remote_addr: '12.12.12'
     assert_response 404
@@ -25,11 +27,20 @@ class ApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "links" do
-    Blog::Application.load_tasks
     io = capture_stdout do
       Rake::Task['util:crawl'].invoke
     end
     failures = io.read.split("\n").select {|line| line !~ /^200/}
     assert failures.empty?, failures.join("\n")
+  end
+
+  test "serves sitemaps" do
+    `foreman run rake util:sitemap`  # uses .env vars
+
+    get '/sitemap_index.xml.gz'
+    assert_response 200
+
+    get '/sitemap1.xml.gz'
+    assert_response 200
   end
 end

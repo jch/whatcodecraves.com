@@ -8,20 +8,6 @@ class HomeControllerTest < ActionController::TestCase
     assert_match %r{<title>\nJerry Cheung's Tech Portfolio\n</title>}, @response.body
   end
 
-  test "sitemap index" do
-    get :sitemap, id: '_index.xml.gz'
-    assert_response :success
-    assert_equal 'application/xml; charset=utf-8', @response.headers['Content-Type']
-    assert_match @response.body, %r{sitemap1.xml.gz</loc>}
-  end
-
-  test "sitemap map" do
-    get :sitemap, id: '1.xml.gz'
-    assert_response :success
-    assert_equal 'application/xml; charset=utf-8', @response.headers['Content-Type']
-    assert_match @response.body, %r{/2008/05/03/kernel-designs</loc>}
-  end
-
   test "robots.txt" do
     get :robots
     assert_response :success

@@ -44,6 +44,7 @@ rake util:crawl        # list all urls in site with status and referer
 ```sh
 git clone https://github.com/jch/whatcodecraves.com
 bundle
+cp config/env.sample .env  # customize this
 rake
 yard
 foreman start
@@ -58,9 +59,9 @@ Reference documentation can be found at [http://rubydoc.info/github/jch/whatcode
 Staging [lives on heroku](http://whatcodecraves.herokuapp.com).
 
 ```sh
-foreman run rake deploy          # runs everything under `deploy`
-foreman run rake deploy:warmup   # warm up Rack::Cache by crawling the site
-foreman run rake deploy:sitemap  # generate a sitemap
+rake deploy          # runs everything under `deploy`
+rake deploy:warmup   # warm up Rack::Cache by crawling the site
+rake deploy:sitemap  # generate a sitemap
 ```
 
 Apache Passenger configuration on VPS:

@@ -63,21 +63,8 @@ namespace :deploy do
 
   # @see [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
   desc "Write sitemap to public. Uses BASE_URL as anchor"
-  task :sitemap => :environment do
-    include Blog::Application.routes.url_helpers
-
-    link_set = SitemapGenerator::LinkSet.new({
-      default_host: ENV['BASE_URL'],
-      verbose:      true,
-      include_root: false
-    })
-
-    link_set.add root_path, changefreq: 'always', priority: 0.8, lastmod: Post.last_modified
-    link_set.add posts_path, changefreq: 'daily', priority: 0.6, lastmod: Post.last_modified
-    Post.all.each do |post|
-      link_set.add post.permalink, lastmod: post.updated_at, priority: 0.33
-    end
-    link_set.create
+  task :sitemap do
+    remote "foreman run rake util:sitemap"
   end
 end
 
