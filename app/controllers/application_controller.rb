@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
   def base_url
     URI.parse(request.url).tap {|u| u.path = ''}.to_s
   end
+
+  # @return [String] full url of request
+  def full_url
+    base_url + request.path
+  end
 end

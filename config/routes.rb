@@ -2,7 +2,6 @@ Blog::Application.routes.draw do
   match '/articles'       => 'posts#index',  as: :posts
   match '/articles*id'    => 'posts#show',   as: :post, format: false
   match '/rss.xml'        => 'posts#index',  as: :rss, format: 'xml'
-  match '/sitemap*id'     => 'home#sitemap', as: :sitemap, format: false
   match '/robots.txt'     => 'home#robots',  as: :robots
 
   if Rails.env.test?
