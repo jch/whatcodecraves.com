@@ -80,7 +80,6 @@ class Sitemap
   # Write sitemap data to cache store. Called by SitemapGenerator
   # @private
   def write(location, raw_data)
-    # puts location.inspect
     path = location.filename.to_s
     data = @compress ? ActiveSupport::Gzip.compress(raw_data) : raw_data
     @maps << path

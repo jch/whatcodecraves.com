@@ -58,9 +58,9 @@ Reference documentation can be found at [http://rubydoc.info/github/jch/whatcode
 Staging [lives on heroku](http://whatcodecraves.herokuapp.com).
 
 ```sh
-rake deploy          # runs everything under `deploy`
-rake deploy:warmup   # warm up Rack::Cache by crawling the site
-rake deploy:sitemap  # generate a sitemap
+foreman run rake deploy          # runs everything under `deploy`
+foreman run rake deploy:warmup   # warm up Rack::Cache by crawling the site
+foreman run rake deploy:sitemap  # generate a sitemap
 ```
 
 Apache Passenger configuration on VPS:
