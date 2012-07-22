@@ -9,6 +9,7 @@ gem 'nokogiri'
 gem 'anemone', require: false
 gem 'sitemap_generator'
 gem 'airbrake'
+gem 'foreman'
 
 group :assets do
   gem 'sass', '>= 3.2.0.alpha.247'  # media queries not interpolating vars

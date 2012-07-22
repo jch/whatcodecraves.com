@@ -46,7 +46,7 @@ git clone https://github.com/jch/whatcodecraves.com
 bundle
 rake
 yard
-rails server
+foreman start
 ```
 
 ## Documentation
