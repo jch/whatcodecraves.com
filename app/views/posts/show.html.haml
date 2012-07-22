@@ -10,5 +10,5 @@
 :javascript
   hljs.initHighlightingOnLoad();
 
-= render partial: 'layouts/sharing.js'
+= render partial: 'layouts/sharing', formats: [:js]
 = render partial: 'layouts/disqus', object: @post
