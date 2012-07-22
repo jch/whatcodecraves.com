@@ -32,11 +32,7 @@ namespace :deploy do
   end
 
   task :code do
-    cmd = "rsync -avz"  # archive, verbose, compress
-    cmd << ' --exclude "*.git" --exclude "tmp" --exclude "log" --exclude "config/apache.conf" '
-    cmd << root.to_s
-    cmd << " #{host}:"
-    system(cmd)
+    remote "git pull origin master"
   end
 
   task :bundle do
@@ -68,4 +64,4 @@ namespace :deploy do
   end
 end
 
-task deploy: ['deploy:code', 'deploy:bundle', 'deploy:restart']
+task deploy: ['deploy:code', 'deploy:bundle', 'deploy:sitemap', 'deploy:restart']
