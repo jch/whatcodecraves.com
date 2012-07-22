@@ -3,6 +3,9 @@ bundler_args:
 
 language: ruby
 
+before_script:
+  - "cp config/env.sample .env"
+
 script: "bundle exec rake"
 
 rvm:
