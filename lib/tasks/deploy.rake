@@ -64,4 +64,4 @@ namespace :deploy do
   end
 end
 
-task deploy: ['deploy:code', 'deploy:bundle', 'deploy:sitemap', 'deploy:restart']
+task deploy: ['deploy:code', 'deploy:bundle', 'deploy:sitemap', 'deploy:assets', 'deploy:restart']
