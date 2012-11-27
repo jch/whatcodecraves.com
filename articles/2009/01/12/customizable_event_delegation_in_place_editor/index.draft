@@ -8,7 +8,7 @@ Hauenstein](http://davehauenstein.com/code/jquery-edit-in-place/) had
 created a fantastic jQuery plugin that did just the trick.  It worked
 great for a while, but the fact that each IPE had to be attached to a
 specific DOM elements meant I had to write extra glue code to create a
-new IPE everytime something was inserted into the DOM.  I made
+new IPE every time something was inserted into the DOM.  I made
 numerous tweaks to it until I ended up rewriting most of it to fit
 what I wanted.  The resulting plugin requires you to fill in more
 options instead of working out of the box like some of the other

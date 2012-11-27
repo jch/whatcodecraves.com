@@ -95,7 +95,7 @@ normal authentication filters run, they won't halt because it'll seem
 like there is a logged in user.  Finally, when the action is finished
 running, the <code>after</code> method will log out the API User to
 prevent a User from staying logged in.  This last step is optional,
-but I think it's better to only let API Users authenticate everytime
+but I think it's better to only let API Users authenticate every time
 they need something.
 
 In order to use this Filter, you'll have to add an 'api_key' column to

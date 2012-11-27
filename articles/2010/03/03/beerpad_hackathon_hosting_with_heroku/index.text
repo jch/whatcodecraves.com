@@ -11,7 +11,7 @@ page to show for it.  Once I had my designs, I wanted to prototype the
 Ruby webapps.  I've been interested in the service since I saw [Adam
 Wiggins](http://adamblog.heroku.com/) demo it at a [SVC Ruby
 Meetup](http://www.meetup.com/silicon-valley-ruby/).  Heroku is a
-one-stop serivce for starting a database-backed, [Rack
+one-stop service for starting a database-backed, [Rack
 compatible](http://rack.rubyforge.org/), Ruby webapp.  They use git to
 version control your code, [Thin](http://code.macournoyer.com/thin/)
 to serve your traffic, and [Postgresql](http://www.postgresql.org/) to
@@ -96,7 +96,7 @@ I can imagine an add-on to address this, but in the meantime, [people
 sent their log data to external
 services](http://www.ioncannon.net/programming/842/heroku-tips-for-the-cheap/#heroku-logs).
 This works, but definitely isn't in the spirit of removing plumbing
-responsibilies from the user.
+responsibilities from the user.
 
 ## Would I pay for it? ##
 
