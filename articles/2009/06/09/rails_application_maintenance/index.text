@@ -8,7 +8,7 @@ intervals when Chuck should be serviced.  At 30,000 miles, you replace
 the spark plugs, rotate tires, inspect the brakes, etc.  In addition
 to these checklists, every 5000 miles Chuck beeps at me and flashes a
 maintenance light to warn me that I should replace the engine oil.  As
-my car nears 50,000 miles, it never ceases to amaze me that everytime
+my car nears 50,000 miles, it never ceases to amaze me that every time
 I turn the key, Chuck starts up instantly and runs as well as he did
 when I first got him.  I wish software could be as reliable as my car.
 Heck, if it's too much to ask for software to be as reliable as a
@@ -20,16 +20,16 @@ reliable than software?  Then it hit me.  Software applications lack
 **regular maintenance**.
 
 Even with the best development practices, I feel that many software
-projects are missing this concept of maintenace.  Once a feature is
+projects are missing this concept of maintenance.  Once a feature is
 completed, it won't be touched again until a) the feature breaks, or
 b) requirement changes affect the feature.  There doesn't seem to be a
 holistic look at the entire app to make sure there aren't future
 problem spots.  Going back to the car analogy, when you go for regular
-maintaince, the entire car is checked over to identify future problem
-spots so you don't have an unexpected catastrophy on the road.
+maintenance, the entire car is checked over to identify future problem
+spots so you don't have an unexpected catastrophe on the road.
 
 So like Chuck's owner's manual, I propose the following "Software
-Maintenace Schedule":
+Maintenance Schedule":
 
 ## Always ##
 
@@ -55,7 +55,7 @@ They're good for ensuring the consistency of the entire system.
 I like to have the staging environment closely reflect the actual
 production environment.  In fact, the ideal way is to have the staging
 environment be cloned nightly from production.  Take care to scrub out
-sensitive information so you don't accidently mass email your live
+sensitive information so you don't accidentally mass email your live
 production users ;)
 
 ## Weekly ##

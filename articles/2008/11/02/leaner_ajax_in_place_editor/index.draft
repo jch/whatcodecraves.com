@@ -56,7 +56,7 @@ in-place-editor.
 The downside is that the content is not editable until the chunk of
 Javascript at the end of the page is run.  If the number of
 in-place-editors grows even larger, then this downside becomes even
-more noticable.  To fix this issue, we can find a happy
+more noticeable.  To fix this issue, we can find a happy
 compromise by running a chunk of Javascript for every *N*
 in-place-editors, where *N* is a configurable constant.
 

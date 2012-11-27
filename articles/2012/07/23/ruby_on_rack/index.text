@@ -216,7 +216,7 @@ it wants to call the downstream app, and what to do with the app's response.
 
 By having this stackable chain of middleware components feeding into each
 other and manipulating each others' inputs and responses, it makes it possible
-to compose application behavior in separate resuable components rather than a
+to compose application behavior in separate reusable components rather than a
 single fat blob of code.
 
 ## Composing Middleware
@@ -240,12 +240,12 @@ without arguments, `rackup` looks for a file named `config.ru` to configure a
 `Rack::Builder` instance:
 
 ```ruby
-# sample 'config.ru' evalutated within a Rack::Builder instance
+# sample 'config.ru' evaluated within a Rack::Builder instance
 use ProfanityFilter
 run MyApp
 ```
 
-Then to run the application from the commmandline:
+Then to run the application from the commandline:
 
 ```
 > rackup config.ru
