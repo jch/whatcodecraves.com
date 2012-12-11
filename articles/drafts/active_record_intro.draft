@@ -13,7 +13,7 @@ Record is
     encapsulates the database access, and adds domain logic on that
     data.
 
-Wow, that was pretty straightfoward.  There isn't too much jargon, but
+Wow, that was pretty straightforward.  There isn't too much jargon, but
 to put it in even more layman terms, Active Record lets you treat
 database rows as full fledged objects.  It streamlines the process of
 retrieving rows (records) from a database, and wrapping the data of
