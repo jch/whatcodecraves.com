@@ -1,11 +1,12 @@
 require 'test_helper'
 
-# Regressions, smoke tests
+# Shared regression and smoke tests for a given environment.
+#
 module ProductionTests
   extend ActiveSupport::Concern
 
   def http
-    @http ||= Faraday.new(url: 'http://www.whatcodecraves.com')
+    @http ||= Faraday.new(url: self.class.base_url)
   end
 
   def smoke(path)
@@ -15,13 +16,17 @@ module ProductionTests
     res
   end
 
-  included do
-    test "redirects without www" do
-      res = Faraday.get 'http://whatcodecraves.com'
-      assert_equal res.status, 302
-      assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
-    end
+  module ClassMethods
+    attr_writer :base_url
 
+    # Public: Returns string url to be base tests upon.
+    def base_url
+      return @base_url if defined?(@base_url)
+      raise NotImplementedError.new "Missing base_url for tests"
+    end
+  end
+
+  included do
     test "home" do
       smoke '/'
     end
@@ -51,4 +56,12 @@ end
 
 class HerokuTest < ActiveSupport::TestCase
   include ProductionTests
+
+  self.base_url = 'http://www.whatcodecraves.com/'
+
+  test "redirects without www" do
+    res = Faraday.get 'http://whatcodecraves.com'
+    assert_equal res.status, 302
+    assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
+  end
 end
