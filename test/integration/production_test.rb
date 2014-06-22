@@ -1,7 +1,9 @@
 require 'test_helper'
 
 # Regressions, smoke tests
-class ProductionTest < ActiveSupport::TestCase
+module ProductionTests
+  extend ActiveSupport::Concern
+
   def http
     @http ||= Faraday.new(url: 'http://www.whatcodecraves.com')
   end
@@ -13,34 +15,40 @@ class ProductionTest < ActiveSupport::TestCase
     res
   end
 
-  test "redirects without www" do
-    res = Faraday.get 'http://whatcodecraves.com'
-    assert_equal res.status, 302
-    assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
-  end
+  included do
+    test "redirects without www" do
+      res = Faraday.get 'http://whatcodecraves.com'
+      assert_equal res.status, 302
+      assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
+    end
 
-  test "home" do
-    smoke '/'
-  end
+    test "home" do
+      smoke '/'
+    end
 
-  test "archives" do
-    smoke '/articles'
-  end
+    test "archives" do
+      smoke '/articles'
+    end
 
-  test "robots" do
-    smoke '/robots.txt'
-  end
+    test "robots" do
+      smoke '/robots.txt'
+    end
 
-  test "rss" do
-    smoke '/rss.xml'
-  end
+    test "rss" do
+      smoke '/rss.xml'
+    end
 
-  test "sitemap links" do
-    smoke '/sitemap_index.xml.gz'
-    smoke '/sitemap1.xml.gz'
-  end
+    test "sitemap links" do
+      smoke '/sitemap_index.xml.gz'
+      smoke '/sitemap1.xml.gz'
+    end
 
-  test "disqus" do
-    # requires capybara-webkit
+    test "disqus" do
+      # requires capybara-webkit
+    end
   end
+end
+
+class HerokuTest < ActiveSupport::TestCase
+  include ProductionTests
 end
