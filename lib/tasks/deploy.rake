@@ -60,7 +60,7 @@ namespace :deploy do
   # @see [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
   desc "Write sitemap to public. Uses BASE_URL as anchor"
   task :sitemap do
-    remote "foreman run rake util:sitemap"
+    remote "BASE_URL=http://whatcodecraves.com foreman run rake util:sitemap"
   end
 end
 
