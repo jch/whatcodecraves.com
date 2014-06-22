@@ -3,7 +3,7 @@ require 'test_helper'
 # Regressions, smoke tests
 class ProductionTest < ActiveSupport::TestCase
   def http
-    @http ||= Faraday.new(url: 'http://whatcodecraves.com')
+    @http ||= Faraday.new(url: 'http://www.whatcodecraves.com')
   end
 
   def smoke(path)
@@ -13,9 +13,10 @@ class ProductionTest < ActiveSupport::TestCase
     res
   end
 
-  test "www should work" do
-    res = Faraday.get 'http://www.whatcodecraves.com'
-    assert_equal res.status, 200
+  test "redirects without www" do
+    res = Faraday.get 'http://whatcodecraves.com'
+    assert_equal res.status, 302
+    assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
   end
 
   test "home" do
