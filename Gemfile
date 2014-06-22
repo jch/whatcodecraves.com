@@ -10,7 +10,10 @@ gem 'anemone', require: false
 gem 'sitemap_generator'
 gem 'airbrake'
 gem 'foreman'
-gem 'heroku'
+
+group :development do
+  gem 'heroku'
+end
 
 group :assets do
   gem 'sass', '>= 3.2.0.alpha.247'  # media queries not interpolating vars
