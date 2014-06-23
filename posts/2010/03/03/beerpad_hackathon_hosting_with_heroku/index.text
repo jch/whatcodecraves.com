@@ -36,7 +36,7 @@ to reference when you're first starting out.
 The first step was to generate my blank Rails project.  I chose to use
 postgresql locally to mirror the production environment closer, and
 also because I had [it setup for previous
-projects](http://www.whatcodecraves.com/articles/2008/02/05/setup_rails_with_postgresql/).
+projects](http://www.whatcodecraves.com/posts/2008/02/05/setup_rails_with_postgresql/).
 Once I verified my application ran locally, I added Heroku as a git
 remote source and pushed.  The really cool part here is that Heroku
 uses git's post receive hook to [package your dependencies with Gem

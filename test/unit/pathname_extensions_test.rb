@@ -29,7 +29,7 @@ class PathnameExtensionsTest < ActiveSupport::TestCase
   end
 
   test "post?" do
-    assert Pathname.new(File.expand_path('../../fixtures/articles/2011/11/14/this_is_the_title', __FILE__)).post?
+    assert Pathname.new(File.expand_path('../../fixtures/posts/2011/11/14/this_is_the_title', __FILE__)).post?
     assert !Pathname.new('test/unit/.gitkeep').post?  # must be directory
     assert !Pathname.new('test/unit').post?           # missing index.text
   end

@@ -32,7 +32,7 @@ module ProductionTests
     end
 
     test "archives" do
-      smoke '/articles'
+      smoke '/posts'
     end
 
     test "robots" do
@@ -64,4 +64,10 @@ class HerokuTest < ActiveSupport::TestCase
     assert_equal res.status, 302
     assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
   end
+end
+
+class GitHubPagesTest < ActiveSupport::TestCase
+  include ProductionTests
+
+  self.base_url = 'http://jch.github.io/'
 end

@@ -27,7 +27,7 @@ class DeprecatedRoutes
     if path == '/archives'
       '/posts'
     elsif path.index('/articles') == 0
-      Post.new(path).permalink
+      Post.new(path.gsub('/articles', '/posts')).permalink
     else
       path
     end
