@@ -28,7 +28,7 @@ then install [Jamis's rdoc template](/files/rdoc_template.rb).
     # this step is optional
     cd /opt/local/lib/ruby/1.8/rdoc/generators/template/html
     sudo mv html html.original.rb
-    sudo curl -o html.rb http://www.whatcodecraves.com/articles/2009/02/28/rails_and_gems_documentation_anywhere/rdoc_template.rb
+    sudo curl -o html.rb http://www.whatcodecraves.com/posts/2009/02/28/rails_and_gems_documentation_anywhere/rdoc_template.rb
 
 (The link to the original template was broken for me.)
 

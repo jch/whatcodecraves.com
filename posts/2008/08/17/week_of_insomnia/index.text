@@ -76,7 +76,7 @@ database.  Surprisingly enough, [Passenger supports
 Merb](http://www.modrails.com/documentation/Users%20guide%202.0.html#_merb)
 just fine.  I looked at some of the other lighter Ruby web frameworks,
 and they were all pretty fun.  I noted that the new
-[Webgen](http://www.whatcodecraves.com/articles/2008/08/06/flaco_crusher/)
+[Webgen](http://www.whatcodecraves.com/posts/2008/08/06/flaco_crusher/)
 installed [Ramaze](http://ramaze.net/) as a dependency.  Check it out
 if you're [feeling hyphy](http://hyphy.whatcodecraves.com/).
 
