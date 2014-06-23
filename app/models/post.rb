@@ -18,7 +18,7 @@ class Post
     #   @return [Pathname]
     attr_writer :root_path
     def root_path
-      @root_path ||= Rails.root + 'articles'
+      @root_path ||= Rails.root + 'posts'
       @root_path ||= Pathname.new(@root_path.expand_path)
     end
 

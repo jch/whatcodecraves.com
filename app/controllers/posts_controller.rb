@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   # @param [URI] permalink
   def permalink_url(permalink)
     uri = URI.parse(request.url)
-    uri.path = '/articles' + permalink
+    uri.path = '/posts' + permalink
     uri
   end
 end

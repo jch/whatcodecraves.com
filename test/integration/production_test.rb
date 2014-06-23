@@ -32,7 +32,7 @@ module ProductionTests
     end
 
     test "archives" do
-      smoke '/articles'
+      smoke '/posts'
     end
 
     test "robots" do
