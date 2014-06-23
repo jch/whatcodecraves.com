@@ -7,6 +7,7 @@ namespace :util do
   #
   # @param [Block] blk yielded server after start
   def start_server(&blk)
+    Thread.abort_on_exception = true
     thread = Thread.new {
       options = {
         Port:      8989 + rand(500),
@@ -14,12 +15,15 @@ namespace :util do
         Logger:    Logger.new(STDOUT).tap {|l| l.level = Logger::WARN}
       }
 
+      puts "Starting server http://0.0.0.0:#{options[:Port]}..."
       Rack::Handler::WEBrick.run(Blog::Application, options) do |server|
         [:INT, :TERM].each {|sig| trap(sig) {server.stop}}
         Thread.current[:server] = server
       end
     }
-    sleep 1  # wait for server
+
+    sleep 0.5 while thread[:server].nil?
+
     blk.call(thread[:server])
     thread[:server].stop
   end
