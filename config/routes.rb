@@ -1,6 +1,7 @@
 Blog::Application.routes.draw do
-  match '/articles'       => 'posts#index',  as: :posts
-  match '/articles*id'    => 'posts#show',   as: :post, format: false
+  match '/posts*id' => 'posts#show', as: :post, format: false
+  resources :posts, :only => :index
+
   match '/rss.xml'        => 'posts#index',  as: :rss, format: 'xml'
   match '/robots.txt'     => 'home#robots',  as: :robots
 

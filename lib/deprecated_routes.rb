@@ -24,7 +24,9 @@ class DeprecatedRoutes
   end
 
   def normalized_path(path)
-    if path.index('/articles') == 0
+    if path == '/archives'
+      '/posts'
+    elsif path.index('/articles') == 0
       Post.new(path).permalink
     else
       path

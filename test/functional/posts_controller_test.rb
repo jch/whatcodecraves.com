@@ -46,7 +46,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "show with periods in permalink" do
-    assert_routing '/articles/2011/11/14/post-2.2.2-name', {
+    assert_routing '/posts/2011/11/14/post-2.2.2-name', {
       controller: 'posts',
       action:     'show',
       id:         '/2011/11/14/post-2.2.2-name'

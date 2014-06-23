@@ -43,4 +43,10 @@ class DeprecatedRoutesTest < ActiveSupport::TestCase
     assert_equal 301, last_response.status
     assert_equal 'http://example.org/articles/2011/11/14/project-readme-y-u-no-have', last_response.headers['Location']
   end
+
+  test "301 archives to posts" do
+    get '/archives'
+    assert_equal 301, last_response.status
+    assert_equal 'http://example.org/posts', last_response.headers['Location']
+  end
 end
