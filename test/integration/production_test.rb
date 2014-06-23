@@ -65,3 +65,9 @@ class HerokuTest < ActiveSupport::TestCase
     assert_equal 'http://www.whatcodecraves.com/', res.headers['Location']
   end
 end
+
+class GitHubPagesTest < ActiveSupport::TestCase
+  include ProductionTests
+
+  self.base_url = 'http://jch.github.io/'
+end

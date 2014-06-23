@@ -12,7 +12,7 @@ xml.rss(:version => "2.0") {
           xml.description { xml.cdata!(post.description) }
           xml.author("Jerry Cheung")
           xml.pubDate(post.date.rfc822)
-          xml.link(permalink_url(post.permalink))
+          xml.link(post_url(post.permalink))
         end
       end
     end
